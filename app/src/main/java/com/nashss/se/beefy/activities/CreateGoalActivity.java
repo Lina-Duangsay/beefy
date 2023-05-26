@@ -53,7 +53,7 @@ public class CreateGoalActivity {
         newGoal.setGoalId(ServiceUtils.generateGoalId());
         newGoal.setName(request.getName());
         newGoal.setDescription(request.getDescription());
-        newGoal.setGoalAmount(request.getGoalAmount();
+        newGoal.setGoalAmount(request.getGoalAmount());
         newGoal.setPriority(request.getPriority());
         newGoal.setCategory(request.getCategory());
         newGoal.setUserId(request.getUserId());

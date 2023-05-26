@@ -9,9 +9,10 @@ public class CreateGoalResult {
         this.model = model;
     }
 
-    public GoalModel getGoalModel(){
+    public GoalModel getGoalModel() {
         return model;
     }
+
     @Override
     public String toString() {
         return "CreateGoalResult{" +
@@ -36,4 +37,5 @@ public class CreateGoalResult {
             return new CreateGoalResult(model);
         }
 
+    }
 }

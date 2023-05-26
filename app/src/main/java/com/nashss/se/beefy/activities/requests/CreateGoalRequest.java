@@ -10,16 +10,14 @@ public class CreateGoalRequest {
     private String description;
     private Double goalAmount;
     private String priority;
-    private String goalId;
 
-    public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority, String goalId) {
+    public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority) {
         this.userId = userId;
         this.name = name;
         this.category = category;
         this.description = description;
         this.goalAmount = goalAmount;
         this.priority = priority;
-        this.goalId = goalId;
     }
 
     public String getUserId() {
@@ -46,10 +44,6 @@ public class CreateGoalRequest {
         return priority;
     }
 
-    public String getGoalId() {
-        return goalId;
-    }
-
     @Override
     public String toString() {
         return "CreateGoalRequest{" +
@@ -59,7 +53,6 @@ public class CreateGoalRequest {
                 ", description='" + description + '\'' +
                 ", goalAmount=" + goalAmount +
                 ", priority='" + priority + '\'' +
-                ", goalId='" + goalId + '\'' +
                 '}';
     }
 
@@ -70,23 +63,21 @@ public class CreateGoalRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-
-        private String userId;
         private String name;
         private String category;
         private String description;
         private Double goalAmount;
         private String priority;
-        private String goalId;
 
-
-        public Builder withUserId(String userId) {
-            this.userId = userId;
-            return this;
-        }
+        private String userId;
 
         public Builder withName(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Builder withUserId(String userId) {
+            this.userId = userId;
             return this;
         }
 
@@ -110,9 +101,8 @@ public class CreateGoalRequest {
             return this;
         }
 
-        public Builder withGoalId(String goalId) {
-            this.goalId = goalId;
-            return this;
+        public CreateGoalRequest build() {
+            return new CreateGoalRequest(userId, name, category, description, goalAmount, priority);
         }
     }
 
