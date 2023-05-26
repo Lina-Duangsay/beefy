@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.nashss.se.brynn.utility.NullUtils.ifNull;
+import static com.nashss.se.beefy.utility.NullUtils.ifNull;
 
 public class LambdaRequest <T> extends APIGatewayProxyRequestEvent {
 

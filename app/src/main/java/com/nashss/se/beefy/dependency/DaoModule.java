@@ -3,6 +3,7 @@ package com.nashss.se.beefy.dependency;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.beefy.dynamodb.DynamoDbClientProvider;
+import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;

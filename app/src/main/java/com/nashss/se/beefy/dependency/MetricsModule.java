@@ -3,6 +3,7 @@ package com.nashss.se.beefy.dependency;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchAsyncClientBuilder;
+import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;

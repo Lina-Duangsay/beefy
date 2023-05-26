@@ -5,6 +5,8 @@ import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.models.GoalModel;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ModelConverterTest {
     private ModelConverter modelConverter = new ModelConverter();
 
