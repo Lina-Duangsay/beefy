@@ -2,10 +2,10 @@ package com.nashss.se.beefy.activities.results;
 
 import com.nashss.se.beefy.models.GoalModel;
 
-public class GetGoalByNameResult {
+public class GetGoalResult {
     private final GoalModel goalModel;
 
-    public GetGoalByNameResult(GoalModel goalModel) {
+    public GetGoalResult(GoalModel goalModel) {
         this.goalModel = goalModel;
     }
 
@@ -33,8 +33,8 @@ public class GetGoalByNameResult {
             return this;
         }
 
-        public GetGoalByNameResult build() {
-            return new GetGoalByNameResult(goalModel);
+        public GetGoalResult build() {
+            return new GetGoalResult(goalModel);
         }
     }
 }

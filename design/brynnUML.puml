@@ -1,0 +1,180 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Models" #4059AD {
+
+class Goal {
+- name : String
+- goalId : String
+- userId : String
+- description : String
+- goalAmount : Double
+- priority : String
+- category : String
+}
+
+class User {
+- userId : String
+- username : String
+- goals : List<Goal>
+- goalCount : Integer
+- goalsCompleted : Integer
+}
+
+}
+
+package "Activities" #6B9AC4 {
+
+    class SearchGoalByNameActivity {
+        + handleRequest()
+    }
+
+    class SearchGoalByCategoryActivity {
+        + handleRequest()
+    }
+
+    class GetGoalActivity {
+        + handleRequest()
+    }
+
+    class GetGoalByCategoryActivity {
+        + handleRequest()
+    }
+
+    class GetGoalByNameActivity {
+        + handleRequest()
+    }
+
+    class UpdateGoalAmountActivity {
+        + handleRequest()
+    }
+
+    class CreateGoalActivity {
+        + handleRequest()
+    }
+
+    class UpdateGoalDescriptionActivity {
+       + handleRequest()
+    }
+
+    class DeleteGoalActivity {
+        + handleRequest()
+    }
+
+}
+
+package "DAOs" #97D8C4 {
+
+    class GoalDao {
+    - DynamoDBMapper dynamoDBMapper;
+    ..
+    + getGoal(String name)
+    + getGoal(String category)
+    + saveGoal(Goal goal)
+    + searchGoal(String category)
+    + searchGoal(String priority)
+    + deleteGoal(Goal goal)
+    }
+
+    class UserDao {
+    - DynamoDBMapper dynamoDBMapper;
+    ..
+    + getGoals()
+    }
+
+}
+
+package "Lambdas" #F4B942 {
+
+
+    class SearchGoalByNameLambda {
+        + handleRequest()
+    }
+
+    class SearchGoalByCategoryLambda {
+        + handleRequest()
+    }
+
+    class GetGoalLambda {
+        + handleRequest()
+    }
+
+    class GetGoalByCategoryLambda {
+        + handleRequest()
+    }
+
+    class GetGoalByNameLambda {
+        + handleRequest()
+    }
+
+    class UpdateGoalAmountLambda {
+        + handleRequest()
+    }
+
+    class CreateGoalLambda {
+        + handleRequest()
+    }
+
+    class UpdateGoalDescriptionLambda {
+       + handleRequest()
+    }
+
+    class DeleteGoalLamba{
+        + handleRequest()
+    }
+
+}
+
+package "Lambda Request & Responses" #AF7A6D {
+
+    class LambdaRequest {
+    }
+
+    class LambdaResponse {
+    }
+
+    class AuthenticatedLambdaRequest {
+    }
+
+    class LambdaActivityRunner {
+    }
+
+}
+
+LambdaActivityRunner <-- UpdateGoalDescriptionLambda
+LambdaActivityRunner <-- CreateGoalLambda
+LambdaActivityRunner <-- UpdateGoalAmountLambda
+LambdaActivityRunner <-- GetGoalByNameLambda
+LambdaActivityRunner <-- GetGoalByCategoryLambda
+LambdaActivityRunner <-- GetGoalLambda
+LambdaActivityRunner <-- SearchGoalByCategoryLambda
+LambdaActivityRunner <-- SearchGoalByNameLambda
+LambdaActivityRunner <-- DeleteGoalLamba
+LambdaActivityRunner --> LambdaResponse
+LambdaRequest --> LambdaActivityRunner
+AuthenticatedLambdaRequest --> LambdaActivityRunner
+
+GoalDao <-- Goal
+UserDao <-- User
+
+GetGoalActivity <-- GoalDao
+GetGoalByCategoryActivity <-- GoalDao
+GetGoalByNameActivity <-- GoalDao
+UpdateGoalAmountActivity <-- GoalDao
+UpdateGoalDescriptionActivity <-- GoalDao
+CreateGoalActivity <-- GoalDao
+SearchGoalByCategoryActivity <-- GoalDao
+SearchGoalByNameActivity <-- GoalDao
+DeleteGoalActivity <-- GoalDao
+
+GetGoalLambda <-- GetGoalActivity
+GetGoalByCategoryLambda <-- GetGoalByCategoryActivity
+GetGoalByNameLambda <-- GetGoalByNameActivity
+SearchGoalByCategoryLambda <-- SearchGoalByCategoryActivity
+SearchGoalByNameLambda <-- SearchGoalByNameActivity
+UpdateGoalAmountLambda <-- UpdateGoalAmountActivity
+UpdateGoalDescriptionLambda <-- UpdateGoalDescriptionActivity
+CreateGoalLambda <-- CreateGoalActivity
+DeleteGoalLamba <-- DeleteGoalActivity
+
+@enduml

@@ -1,13 +1,13 @@
 package com.nashss.se.beefy.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.List;
 import java.util.Objects;
 
-@DynamoDBTable(tableName = "Users")
+@DynamoDBTable(tableName = "users")
 public class User {
     private String userId;
     private String username;
@@ -15,7 +15,7 @@ public class User {
     private Integer goalCount;
     private Integer goalsCompleted;
 
-    @DynamoDBIndexHashKey(attributeName = "userId")
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -23,6 +23,7 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
     @DynamoDBAttribute(attributeName = "username")
     public String getUsername() {
         return username;

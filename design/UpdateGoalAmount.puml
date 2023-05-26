@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Client -> Website: Submit goal amount update form
+Website -> UpdateGoalAmountActivity: Send update requet
+UpdateGoalAmountActivity -> Goals: save updates
+@enduml
