@@ -3,7 +3,6 @@ package com.nashss.se.beefy.lambda;
 import com.nashss.se.beefy.dependency.DaggerServiceComponent;
 import com.nashss.se.beefy.dependency.ServiceComponent;
 
-import com.nashss.se.beefy.lambdas.LambdaResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

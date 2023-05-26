@@ -1,4 +1,4 @@
-package com.nashss.se.beefy.lambdas;
+package com.nashss.se.beefy.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;

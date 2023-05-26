@@ -1,9 +1,6 @@
 package com.nashss.se.beefy.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Objects;
 
@@ -18,7 +15,7 @@ public class Goal {
     private String priority;
     private String goalId;
 
-    @DynamoDBIndexHashKey(attributeName = "userId")
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -27,7 +24,7 @@ public class Goal {
         this.userId = userId;
     }
 
-    @DynamoDBIndexRangeKey(attributeName = "name")
+    @DynamoDBRangeKey(attributeName = "name")
     public String getName() {
         return name;
     }

@@ -237,7 +237,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /goals/{user}/{id}
+            Path: /goals/{user}/{name}
             Method: get
             Auth:
               Authorizer: 'NONE'
