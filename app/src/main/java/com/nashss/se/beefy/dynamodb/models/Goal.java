@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Objects;
 
-@DynamoDBTable(tableName = "Goals")
+@DynamoDBTable(tableName = "goals")
 public class Goal {
 
     private String userId;
@@ -15,7 +15,16 @@ public class Goal {
     private String priority;
     private String goalId;
 
-    @DynamoDBHashKey(attributeName = "userId")
+    @DynamoDBHashKey(attributeName = "goalId")
+    public String getGoalId() {
+        return goalId;
+    }
+
+    public void setGoalId(String goalId) {
+        this.goalId = goalId;
+    }
+
+    @DynamoDBAttribute(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -24,10 +33,11 @@ public class Goal {
         this.userId = userId;
     }
 
-    @DynamoDBRangeKey(attributeName = "name")
+    @DynamoDBAttribute(attributeName = "name")
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -67,15 +77,6 @@ public class Goal {
 
     public void setPriority(String priority) {
         this.priority = priority;
-    }
-
-    @DynamoDBAttribute(attributeName = "goalId")
-    public String getGoalId() {
-        return goalId;
-    }
-
-    public void setGoalId(String goalId) {
-        this.goalId = goalId;
     }
 
     @Override

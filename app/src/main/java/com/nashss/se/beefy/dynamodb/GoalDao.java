@@ -41,18 +41,13 @@ public class GoalDao {
      * @param name the Goal name
      * @return the stored Goal, or null if none was found.
      */
-    public Goal getGoal(String userId, String name) {
-        Goal goal = this.mapper.load(Goal.class, userId, name);
+    public Goal getGoal(String goalId) {
+        Goal goal = this.mapper.load(Goal.class, goalId);
 
         if (goal == null) {
-            if (userId == null) {
-                metricsPublisher.addCount(GETGOAL_USERNOTFOUND_COUNT, 1);
-                throw new UserNotFoundException("user id " + userId + " did not return any results!");
-            }
-
-            if (name == null) {
+            if (goalId == null) {
                 metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
-                throw new GoalNotFoundException("goal name " + name + " did not return any results!");
+                throw new GoalNotFoundException("goal id: " + goalId + " did not return any results!");
             }
         }
 

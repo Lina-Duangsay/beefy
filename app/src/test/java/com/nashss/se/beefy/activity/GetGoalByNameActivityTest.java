@@ -1,9 +1,9 @@
 package com.nashss.se.beefy.activity;
 
 
-import com.nashss.se.beefy.activities.GetGoalByNameActivity;
-import com.nashss.se.beefy.activities.requests.GetGoalByNameRequest;
-import com.nashss.se.beefy.activities.results.GetGoalByNameResult;
+import com.nashss.se.beefy.activities.GetGoalActivity;
+import com.nashss.se.beefy.activities.requests.GetGoalRequest;
+import com.nashss.se.beefy.activities.results.GetGoalResult;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +19,12 @@ public class GetGoalByNameActivityTest {
     @Mock
     private GoalDao goalDao;
 
-    private GetGoalByNameActivity getGoalByNameActivity;
+    private GetGoalActivity getGoalByNameActivity;
 
     @BeforeEach
     public void setUp() {
         initMocks(this);
-        getGoalByNameActivity = new GetGoalByNameActivity(goalDao);
+        getGoalByNameActivity = new GetGoalActivity(goalDao);
     }
 
     @Test
@@ -47,15 +47,14 @@ public class GetGoalByNameActivityTest {
         goal.setPriority(priority);
         goal.setGoalId(goalId);
 
-        when(goalDao.getGoal(expectedUserId, expectedGoalName)).thenReturn(goal);
+        when(goalDao.getGoal(goalId)).thenReturn(goal);
 
-        GetGoalByNameRequest request = GetGoalByNameRequest.builder()
-                .withUserId(expectedUserId)
-                .withName(expectedGoalName)
+        GetGoalRequest request = GetGoalRequest.builder()
+                .withGoalId(goalId)
                 .build();
 
         // WHEN
-        GetGoalByNameResult result = getGoalByNameActivity.handleRequest(request);
+        GetGoalResult result = getGoalByNameActivity.handleRequest(request);
 
         // THEN
         assertEquals(expectedUserId, result.getGoalModel().getUserId());

@@ -220,12 +220,12 @@ Resources:
   # Lambda Functions Configuration
   #-----------------------------------------------------
 
-  GetGoalByNameLambda:
+  GetGoal:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: app
-      Handler: com.nashss.se.beefy.lambda.GetGoalByNameLambda::handleRequest
+      Handler: com.nashss.se.beefy.lambda.GetGoalLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -237,7 +237,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /goals/{user}/{name}
+            Path: /goals/{goalId}
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -354,15 +354,11 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "userId"
-          AttributeType: "S"
-        - AttributeName: "name"
+        - AttributeName: "goalId"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "userId"
+        - AttributeName: "goalId"
           KeyType: "HASH"
-        - AttributeName: "name"
-          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "goals"
 

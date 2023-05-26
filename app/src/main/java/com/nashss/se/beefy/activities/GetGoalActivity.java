@@ -1,7 +1,7 @@
 package com.nashss.se.beefy.activities;
 
-import com.nashss.se.beefy.activities.requests.GetGoalByNameRequest;
-import com.nashss.se.beefy.activities.results.GetGoalByNameResult;
+import com.nashss.se.beefy.activities.requests.GetGoalRequest;
+import com.nashss.se.beefy.activities.results.GetGoalResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
  *
  * This API allows the customer to get one of their saved goals.
  */
-public class GetGoalByNameActivity {
+public class GetGoalActivity {
     private final Logger log = LogManager.getLogger();
     private final GoalDao goalDao;
 
@@ -27,7 +27,7 @@ public class GetGoalByNameActivity {
      * @param goalDao GoalDao to access the goal table.
      */
     @Inject
-    public GetGoalByNameActivity(GoalDao goalDao) {
+    public GetGoalActivity(GoalDao goalDao) {
         this.goalDao = goalDao;
     }
 
@@ -41,16 +41,15 @@ public class GetGoalByNameActivity {
      * @param request request object containing the userId and goal name
      * @return getGoalByNameResult result object containing the API defined {@link com.nashss.se.beefy.models.GoalModel}
      */
-    public GetGoalByNameResult handleRequest(final GetGoalByNameRequest request) {
+    public GetGoalResult handleRequest(final GetGoalRequest request) {
         log.info("Received GetGoalByNameRequest {}", request);
 
-        String requestedUserId = request.getUserId();
-        String requestedName = request.getName();
+        String requestGoalId = request.getGoalId();
 
-        Goal goal = goalDao.getGoal(requestedUserId, requestedName);
+        Goal goal = goalDao.getGoal(requestGoalId);
         GoalModel goalModel = new ModelConverter().toGoalModel(goal);
 
-        return GetGoalByNameResult.builder()
+        return GetGoalResult.builder()
                 .withGoal(goalModel)
                 .build();
     }

@@ -2,6 +2,7 @@ package com.nashss.se.beefy.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.beefy.dynamodb.models.Goal;
+import com.nashss.se.beefy.exceptions.GoalNotFoundException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsConstants;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
@@ -33,32 +34,32 @@ public class GoalDaoTest {
     }
 
     @Test
-    public void getGoal_withUserIdAndGoalName_callsMapperWithPartitionKey() {
+    public void getGoal_withGoalId_callsMapperWithPartitionKey() {
         // GIVEN
         String userId = "beef wellington";
         String name = "cat treats";
-        when(dynamoDBMapper.load(Goal.class, userId, name)).thenReturn(new Goal());
+        String goalId = "1234";
+        when(dynamoDBMapper.load(Goal.class, goalId)).thenReturn(new Goal());
 
         // WHEN
-        Goal goal = goalDao.getGoal(userId, name);
+        Goal goal = goalDao.getGoal(goalId);
 
         // THEN
         assertNotNull(goal);
-        verify(dynamoDBMapper).load(Goal.class, userId, name);
+        verify(dynamoDBMapper).load(Goal.class, goalId);
         verify(metricsPublisher).addCount(eq(MetricsConstants.GETGOAL_GOALNOTFOUND_COUNT), anyDouble());
 
     }
 
     @Test
-    public void GetGoal_UserIdNotFound_throwsUserNotFoundException() {
+    public void GetGoal_GoalIdNotFound_throwsGoalNotFoundException() {
         // GIVEN
         String fakeId = null;
-        String fakeName = null;
-        when(dynamoDBMapper.load(Goal.class, fakeId, fakeName)).thenReturn(null);
+        when(dynamoDBMapper.load(Goal.class, fakeId)).thenReturn(null);
 
         // WHEN + THEN
-        assertThrows(UserNotFoundException.class, () -> goalDao.getGoal(fakeId, fakeName));
-        verify(metricsPublisher).addCount(eq(MetricsConstants.GETGOAL_USERNOTFOUND_COUNT), anyDouble());
+        assertThrows(GoalNotFoundException.class, () -> goalDao.getGoal(fakeId));
+        verify(metricsPublisher).addCount(eq(MetricsConstants.GETGOAL_GOALNOTFOUND_COUNT), anyDouble());
     }
 
 }
