@@ -1,0 +1,13 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "beefy"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-176a0096d037b"
+s3_prefix = "beefy"
+disable_rollback = true
+parameter_overrides = "CognitoDomain=\"project-beefythebudgetbuddy-selami\" S3Bucket=\"nss-s3-c02-capstone-linaduangsay\" FrontendDeployment=\"remote\""
