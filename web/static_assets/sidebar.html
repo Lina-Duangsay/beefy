@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #a2a4f0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar div {
+            padding: 8px 8px 8px 30px;
+            font-size: 24px;
+            display: block;
+            transition: 0.5s;
+            cursor: pointer;
+            font-family:fantasy
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+
+        .openbtn {
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #a2a4f0;
+            border-style: solid;
+        }
+
+        #main {
+            transition: margin-left .5s;
+        }
+
+    </style>
+</head>
+
+<body style="background-color:rgb(248, 244, 255);">
+
+    <div id="mySidebar" class="sidebar">
+        <div class="closebtn" onclick="closeNav()">×</div>
+        <div>About</div>
+        <div><a href="/index.html">Home</a></div>
+        <div>Sign in | Create Account</div>
+        <div>View Goals</div>
+        <div>Create Goals</div>
+        <div>Update Goals</div>
+        <div>Delete Goals</div>
+        <div>Search Goals</div>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">✿</button>
+        <p> welcome to beef the budget buddy! </p>
+        <hr class="dotted">
+        <p> meow meow meow</p>
+        <img src="https://pbs.twimg.com/media/Eoe6vi-WMAAg6d9.jpg:large">
+        <h1> words words words</h1>
+        <p> tiny words </p>
+        <h2> slightly smaller words</h2>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+</body>
+
+</html>
