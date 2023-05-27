@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import BeefyClient from '../api/beefyClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -18,17 +18,14 @@ class ViewPlaylist extends BindingClass {
     }
 
     /**
-     * Once the client is loaded, get the playlist metadata and song list.
+     * Once the client is loaded, get the goal metadata.
      */
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
-        const playlistId = urlParams.get('id');
-        document.getElementById('playlist-name').innerText = "Loading Playlist ...";
-        const playlist = await this.client.getPlaylist(playlistId);
-        this.dataStore.set('playlist', playlist);
-        document.getElementById('songs').innerText = "(loading songs...)";
-        const songs = await this.client.getPlaylistSongs(playlistId);
-        this.dataStore.set('songs', songs);
+        const goalId = urlParams.get('goalId');
+        document.getElementById('goalId').innerText = "Loading Goal ...";
+        const goal = await this.client.getGoal(goalId);
+        this.dataStore.set('goal', goal);
     }
 
     /**
@@ -39,7 +36,7 @@ class ViewPlaylist extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new BeefyClient();
         this.clientLoaded();
     }
 
@@ -122,8 +119,8 @@ class ViewPlaylist extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const viewPlaylist = new ViewPlaylist();
-    viewPlaylist.mount();
+    const viewGoal = new ViewGoal();
+    viewGoal.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
