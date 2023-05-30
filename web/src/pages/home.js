@@ -101,31 +101,7 @@ class SearchPlaylists extends BindingClass {
         }
     }
 
-    /**
-     * Create appropriate HTML for displaying searchResults on the page.
-     * @param searchResults An array of playlists objects to be displayed on the page.
-     * @returns A string of HTML suitable for being dropped on the page.
-     */
-    getHTMLForSearchResults(searchResults) {
-        if (searchResults.length === 0) {
-            return '<h4>No results found</h4>';
-        }
-
-        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
-        for (const res of searchResults) {
-            html += `
-            <tr>
-                <td>
-                    <a href="playlist.html?id=${res.id}">${res.name}</a>
-                </td>
-                <td>${res.songCount}</td>
-                <td>${res.tags?.join(', ')}</td>
-            </tr>`;
-        }
-        html += '</table>';
-
-        return html;
-    }
+\
 
 }
 

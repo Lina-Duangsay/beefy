@@ -82,10 +82,10 @@ export default class BeefyClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The goal's metadata.
      */
-    async getPlaylist(goalId, errorCallback) {
+    async getGoal(goalId, errorCallback) {
         try {
             const response = await this.axiosClient.get(`goals/${goalId}`);
-            return response.data.playlist;
+            return response.data.goal;
         } catch (error) {
             this.handleError(error, errorCallback)
         }

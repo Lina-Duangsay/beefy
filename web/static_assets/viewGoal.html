@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<!-- get goal endpoint --> 
-
+<title>View Goal By ID</title>
 <head>
+    <script type="text/javascript" src="assets/viewGoal.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         .sidebar {
@@ -14,7 +16,7 @@
             left: 0;
             background-color: #a2a4f0;
             overflow-x: hidden;
-            transition: 0.5s;
+            transition: 0.4s;
             padding-top: 60px;
         }
 
@@ -22,7 +24,7 @@
             padding: 8px 8px 8px 30px;
             font-size: 24px;
             display: block;
-            transition: 0.5s;
+            transition: 0.4s;
             cursor: pointer;
             font-family:fantasy
         }
@@ -48,7 +50,14 @@
     </style>
 </head>
 
-<body style="background-color:rgb(248, 244, 255);">
+<header class="header" id="header">
+    <a href="index.html">
+        <img src="beefers.png" alt="beef logo placeholder" style="width:150px;height:150px;">
+    </a>
+</header>
+
+
+<body class="background">
 
     <div id="mySidebar" class="sidebar">
         <div class="closebtn" onclick="closeNav()">×</div>
@@ -63,23 +72,28 @@
     </div>
 
     <div id="main">
+
         <button class="openbtn" onclick="openNav()">✿</button>
-        <p> welcome to beef the budget buddy! </p>
+
+    <center><h1> View Goal By ID: </h1></center>
+
         <hr class="dotted">
-        <p> meow meow meow</p>
-        <img src="https://pbs.twimg.com/media/Eoe6vi-WMAAg6d9.jpg:large">
-        <h1> words words words</h1>
-        <p> tiny words </p>
-        <h2> slightly smaller words</h2>
-
+   
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <center>
-        <h3><label> <b> View Goal: </b></label></h3>
-        <input type="text" required class="validated-field" id="goal-id" placeholder="5476" autofocus>
+        <form class = "card-content" id="view-goal-form">
         
-        <a href="#" class="button" id="submit">Submit</a>
-        </center>
+            <h2><label> <b>Enter Goal ID: </b></label></h2>
 
-    </div>
+            <input type="text" required class="validated-field" id="goal-id" placeholder="ex. 1237" autofocus> 
+
+        &nbsp;&nbsp;&nbsp;
+
+            <center> <a href="#" button class="button-bordered" id="submit"> Submit </center>
+                
+        </form>
+        </div>
+        </center>
 
     <script>
         function openNav() {

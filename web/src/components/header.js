@@ -37,10 +37,10 @@ export default class Header extends BindingClass {
         homeButton.href = 'index.html';
 
         const img = document.createElement('img');
-        img.src = 'beef.png';
+        img.src = 'beefers.png';
         img.alt = 'beefy';
-        img.style.width = '1800px';
-        img.style.height = '450px';
+        img.style.width = '150px';
+        img.style.height = '150px';
         homeButton.appendChild(img);
 
         const siteTitle = document.createElement('div');
@@ -57,19 +57,12 @@ export default class Header extends BindingClass {
         if (currentUser) {
             const dashboardButton = document.createElement('a');
             dashboardButton.classList.add('button');
-            dashboardButton.href = 'employeeDashboard.html';
-            dashboardButton.innerText = 'Employee Dashboard';
-
-            const createOrderButton = document.createElement('a');
-            createOrderButton.classList.add('button');
-            createOrderButton.href = 'createOrder.html';
-            createOrderButton.innerText = 'Create Order';
+            dashboardButton.href = 'userDashboard.html';
+            dashboardButton.innerText = 'Dashboard';
 
             const logoutButton = this.createLogoutButton(currentUser);
 
             userInfo.appendChild(dashboardButton);
-            userInfo.appendChild(document.createTextNode('\u00A0')); // add a space between the buttons
-            userInfo.appendChild(createOrderButton);
             userInfo.appendChild(document.createTextNode('\u00A0')); // add a space between the buttons
             userInfo.appendChild(logoutButton);
 
@@ -77,9 +70,9 @@ export default class Header extends BindingClass {
             const leftOffset = parseInt(style.getPropertyValue('left'), 10);
             const buttonWidth = parseInt(style.getPropertyValue('width'), 10);
 
-            createOrderButton.style.left = `${leftOffset - buttonWidth - 80}px`; // adjust the left position of the Create Order button
             dashboardButton.style.left = `${leftOffset - (2 * buttonWidth) - 160}px`; // adjust the left position of the Dashboard button
             userInfo.style.width = `${leftOffset + (2 * buttonWidth) + 160}px`; // adjust the width of the userInfo container to include the gap and buttons
+            
         } else {
             const loginButton = this.createLoginButton();
             userInfo.appendChild(loginButton);
