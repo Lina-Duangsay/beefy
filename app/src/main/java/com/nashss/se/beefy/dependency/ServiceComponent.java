@@ -18,4 +18,9 @@ public interface ServiceComponent {
      */
     GetGoalActivity provideGetGoalByNameActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return CreateGoalActivity
+     */
+    CreateGoalActivity provideCreateGoalActivity();
 }

@@ -242,6 +242,26 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  CreateGoalLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: com.nashss.se.beefy.lambda.CreateGoalLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /goals
+            Method: post
+
   # SearchPlaylistsLambda:
   #   Type: AWS::Serverless::Function
   #   Properties:

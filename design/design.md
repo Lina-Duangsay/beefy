@@ -29,7 +29,7 @@ see and plan your savings will provide motivation and excitement towards getting
 
 ---
 
-## [UML Diagram](./brynnUML.puml)
+## [UML Diagram](./beefUML.puml)
 
 ---
 
