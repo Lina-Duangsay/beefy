@@ -91,6 +91,31 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
+    /**
+     * Create a new goal owned by the current user.
+     * @param name The name of the goal to create.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The playlist that has been created.
+     */
+    async createPlaylist(name, tags, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create goals.");
+            const response = await this.axiosClient.post(`goals`, {
+                name: name,
+                category: category,
+                amount: amount,
+                description: description,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
     // /**
     //  * Get the songs on a given playlist by the playlist's identifier.
     //  * @param id Unique identifier for a playlist
