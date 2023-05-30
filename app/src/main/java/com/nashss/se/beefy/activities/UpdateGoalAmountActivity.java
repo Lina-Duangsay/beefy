@@ -5,7 +5,9 @@ import com.nashss.se.beefy.activities.results.UpdateGoalAmountResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
+import com.nashss.se.beefy.dynamodb.models.User;
 import com.nashss.se.beefy.exceptions.GoalNotFoundException;
+import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +50,7 @@ public class UpdateGoalAmountActivity {
      * <p>
      * If the goal does not exist, this should throw a GoalNotFoundException.
      *
-     * @param updateGoalAmountRequest request object containing the playlist ID, playlist name, and customer ID
+     * @param request request object containing the goal ID, goal amount, and customer ID
      *                              associated with it
      * @return updateGoalAmountResult result object containing the API defined {@link com.nashss.se.beefy.models.GoalModel}
      */
@@ -58,14 +60,16 @@ public class UpdateGoalAmountActivity {
         Goal goal = goalDao.getGoal(request.getGoalId());
 
         if (!goal.getGoalId().equals(request.getGoalId())) {
-            publishExceptionMetrics(false, true);
             throw new GoalNotFoundException("You do not have a goal with this ID!");
         }
 
-        goal.setGoalAmount(request.getAmount());
-        savedGoal = goalDao.saveGoal(goal);
+        if (!goal.getUserId().equals(request.getUserId())) {
+            throw new UserNotFoundException("Your user info was not found!");
+        }
 
-        publishExceptionMetrics(false, false);
+        goal.setGoalAmount(request.getAmount());
+        Goal savedGoal = goalDao.saveGoal(goal);
+
         return UpdateGoalAmountResult.builder()
                 .withGoal(new ModelConverter().toGoalModel(savedGoal))
                 .build();
