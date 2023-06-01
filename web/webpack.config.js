@@ -28,6 +28,7 @@ module.exports = {
     viewGoal: path.resolve(__dirname, 'src', 'pages', 'viewGoal.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     createGoal: path.resolve(__dirname, 'src', 'pages', 'createGoal.js'),
+    home: path.resolve(__dirname, 'src', 'pages', 'home.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
