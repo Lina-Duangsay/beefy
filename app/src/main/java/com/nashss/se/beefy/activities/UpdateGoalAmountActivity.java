@@ -56,6 +56,10 @@ public class UpdateGoalAmountActivity {
 
         Goal goal = goalDao.getGoal(request.getGoalId());
 
+        if (goal == null) {
+            throw new GoalNotFoundException();
+        }
+
         if (!goal.getGoalId().equals(request.getGoalId())) {
             metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
             throw new GoalNotFoundException("You do not have a goal with this ID!");

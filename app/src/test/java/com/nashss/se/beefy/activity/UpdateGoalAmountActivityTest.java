@@ -64,14 +64,26 @@ public class UpdateGoalAmountActivityTest {
         assertEquals(newAmount, result.getModel().getGoalAmount());
     }
 
+
     @Test
     public void handleRequest_invalidAmount_throwsInvalidAmountException() {
-        // GIVEN
+    // GIVEN
+        String goalId = "1589";
+        String userId = "selene";
+        double amount = -1.0;
+
         UpdateGoalAmountRequest request = UpdateGoalAmountRequest.builder()
-                .withUserId("seline")
-                .withGoalId("2001")
-                .withAmount(-1.0)
+                .withUserId(userId)
+                .withGoalId(goalId)
+                .withAmount(amount)
                 .build();
+
+        Goal newGoal = new Goal();
+        newGoal.setGoalId(goalId);
+        newGoal.setUserId(userId);
+        newGoal.setGoalAmount(amount);
+
+        when(goalDao.getGoal(goalId)).thenReturn(newGoal);
 
         // WHEN + THEN
         try {
@@ -79,7 +91,6 @@ public class UpdateGoalAmountActivityTest {
             fail("Expected InvalidAmountException to be thrown");
         } catch (InvalidAmountException e) {
             verify(metricsPublisher).addCount(MetricsConstants.UPDATEGOALAMOUNT_AMOUNTINVALID_COUNT, 1);
-            verify(metricsPublisher).addCount(MetricsConstants.UPDATEGOALAMOUNT_AMOUNTINVALID_COUNT, 0);
         }
     }
 }

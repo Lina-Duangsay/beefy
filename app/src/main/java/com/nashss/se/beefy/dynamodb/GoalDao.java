@@ -44,11 +44,10 @@ public class GoalDao {
     public Goal getGoal(String goalId) {
         Goal goal = this.mapper.load(Goal.class, goalId);
 
-        if (goal == null) {
-            if (goalId == null) {
-                metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
-                throw new GoalNotFoundException("goal id: " + goalId + " did not return any results!");
-            }
+        if (goalId == null) {
+            metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
+            throw new GoalNotFoundException("goal id: " + goalId + " did not return any results!");
+
         }
 
         metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 0);
