@@ -68,7 +68,6 @@ public class CreateGoalRequest {
         private String description;
         private Double goalAmount;
         private String priority;
-
         private String userId;
 
         public Builder withName(String name) {
