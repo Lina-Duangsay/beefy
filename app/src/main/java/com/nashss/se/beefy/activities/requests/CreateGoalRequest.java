@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 public class CreateGoalRequest {
 
-    private String userId;
-    private String name;
-    private String category;
-    private String description;
-    private Double goalAmount;
-    private String priority;
+    private final String userId;
+    private final String name;
+    private final String category;
+    private final String description;
+    private final Double goalAmount;
+    private final String priority;
 
     public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority) {
         this.userId = userId;

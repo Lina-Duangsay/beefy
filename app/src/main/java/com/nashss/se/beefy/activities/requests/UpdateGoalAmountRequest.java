@@ -3,9 +3,9 @@ package com.nashss.se.beefy.activities.requests;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 public class UpdateGoalAmountRequest {
-    private String userId;
-    private String goalId;
-    private Double amount;
+    private final String userId;
+    private final String goalId;
+    private final Double amount;
 
     public UpdateGoalAmountRequest(String userId, String goalId, Double amount) {
         this.userId = userId;
@@ -44,5 +44,23 @@ public class UpdateGoalAmountRequest {
         private String goalId;
         private Double amount;
 
+        public Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
 
+        public Builder withGoalId(String goalId) {
+            this.goalId = goalId;
+            return this;
+        }
+
+        public Builder withAmount(Double amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public UpdateGoalAmountRequest build(){
+            return new UpdateGoalAmountRequest(userId, goalId, amount);
+        }
+    }
 }

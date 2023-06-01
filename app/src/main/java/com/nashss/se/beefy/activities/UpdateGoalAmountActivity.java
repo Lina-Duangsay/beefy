@@ -14,20 +14,15 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
+/**
+ * Implementation of the UpdateGoalAmountActivity for the BeefyService's UpdateGoalAmount API.
+ *
+ * This API allows the customer to update their saved goal's amount information.
+ */
 public class UpdateGoalAmountActivity {
     private final Logger log = LogManager.getLogger();
     private final GoalDao goalDao;
     private final MetricsPublisher metricsPublisher;
-
-    /**
-     * Implementation of the UpdateGoalAmountActivity for the BeefyService's UpdateGoalAmount API.
-     *
-     * This API allows the customer to update their saved goal's amount information.
-     */
-    public UpdateGoalAmountActivity(GoalDao goalDao, MetricsPublisher metricsPublisher) {
-        this.goalDao = goalDao;
-        this.metricsPublisher = metricsPublisher;
-    }
 
     /**
      * Instantiates a new UpdateGoalAmountActivity object.
@@ -36,8 +31,7 @@ public class UpdateGoalAmountActivity {
      * @param metricsPublisher MetricsPublisher to publish metrics.
      */
     @Inject
-    public UpdatePlaylistActivity(GoalDao goalDao, MetricsPublisher metricsPublisher) {
-        //super(UpdatePlaylistRequest.class);
+    public UpdateGoalAmountActivity(GoalDao goalDao, MetricsPublisher metricsPublisher) {
         this.goalDao = goalDao;
         this.metricsPublisher = metricsPublisher;
     }
@@ -60,6 +54,7 @@ public class UpdateGoalAmountActivity {
         Goal goal = goalDao.getGoal(request.getGoalId());
 
         if (!goal.getGoalId().equals(request.getGoalId())) {
+            metricsPublisher.addMetric();
             throw new GoalNotFoundException("You do not have a goal with this ID!");
         }
 
@@ -71,7 +66,7 @@ public class UpdateGoalAmountActivity {
         Goal savedGoal = goalDao.saveGoal(goal);
 
         return UpdateGoalAmountResult.builder()
-                .withGoal(new ModelConverter().toGoalModel(savedGoal))
+                .withGoalModel(new ModelConverter().toGoalModel(savedGoal))
                 .build();
     }
 }
