@@ -10,6 +10,10 @@ public class UpdateGoalAmountResult {
         this.model = model;
     }
 
+    public GoalModel getModel() {
+        return model;
+    }
+
     @Override
     public String toString() {
         return "UpdateGoalAmountResult{" +

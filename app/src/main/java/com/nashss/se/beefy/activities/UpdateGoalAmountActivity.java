@@ -7,12 +7,15 @@ import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.dynamodb.models.User;
 import com.nashss.se.beefy.exceptions.GoalNotFoundException;
+import com.nashss.se.beefy.exceptions.InvalidAmountException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+
+import static com.nashss.se.beefy.metrics.MetricsConstants.*;
 
 /**
  * Implementation of the UpdateGoalAmountActivity for the BeefyService's UpdateGoalAmount API.
@@ -54,12 +57,18 @@ public class UpdateGoalAmountActivity {
         Goal goal = goalDao.getGoal(request.getGoalId());
 
         if (!goal.getGoalId().equals(request.getGoalId())) {
-            metricsPublisher.addMetric();
+            metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
             throw new GoalNotFoundException("You do not have a goal with this ID!");
         }
 
         if (!goal.getUserId().equals(request.getUserId())) {
+            metricsPublisher.addCount(GETGOAL_USERNOTFOUND_COUNT, 1);
             throw new UserNotFoundException("Your user info was not found!");
+        }
+
+        if (goal.getGoalAmount() <= 0) {
+            metricsPublisher.addCount(UPDATEGOALAMOUNT_AMOUNTINVALID_COUNT, 1);
+            throw new InvalidAmountException("You cannot update the amount to a value less than 0!");
         }
 
         goal.setGoalAmount(request.getAmount());
