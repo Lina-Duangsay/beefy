@@ -282,6 +282,26 @@ Resources:
              Path: /goals/updategoals/{goalid}
              Method: put
 
+  UpdateGoalDescriptionLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: com.nashss.se.beefy.lambda.UpdateGoalDescriptionLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        BeefyService:
+          Type: Api
+          Properties:
+            Path: /goals/updateDescription/{goalid}
+            Method: put
+
   # SearchPlaylistsLambda:
   #   Type: AWS::Serverless::Function
   #   Properties:
