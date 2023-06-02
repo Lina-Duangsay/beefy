@@ -59,7 +59,7 @@ public class UpdateGoalDescriptionRequest {
             return this;
         }
 
-        public Builder withAmount(String description) {
+        public Builder withDescription(String description) {
             this.description = description;
             return this;
         }
