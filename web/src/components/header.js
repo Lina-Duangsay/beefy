@@ -50,6 +50,19 @@ export default class Header extends BindingClass {
         return siteTitle;
     }
 
+    // createUserInfoForHeader(currentUser) {
+    //     const userInfo = document.createElement('div');
+    //     userInfo.classList.add('user');
+
+    //     const childContent = currentUser
+    //         ? this.createLogoutButton(currentUser)
+    //         : this.createLoginButton();
+
+    //     userInfo.appendChild(childContent);
+
+    //     return userInfo;
+    // }
+
     createUserInfoForHeader(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user');
@@ -83,6 +96,10 @@ export default class Header extends BindingClass {
 
     createLoginButton() {
         return this.createButton('Login', this.client.login);
+    }
+
+    createViewGoalButton() {
+        return this.createButton('View Goal', this.client.viewGoal);
     }
 
     createLogoutButton(currentUser) {

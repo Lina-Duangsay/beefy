@@ -97,7 +97,7 @@ export default class BeefyClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist that has been created.
      */
-    async createPlaylist(name, tags, errorCallback) {
+    async createGoal(name, amount, desccription, category, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create goals.");
             const response = await this.axiosClient.post(`goals`, {

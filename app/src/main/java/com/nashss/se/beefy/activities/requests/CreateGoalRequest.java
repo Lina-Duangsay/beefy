@@ -1,15 +1,17 @@
 package com.nashss.se.beefy.activities.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+@JsonDeserialize(builder = CreateGoalRequest.Builder.class)
 public class CreateGoalRequest {
 
-    private String userId;
-    private String name;
-    private String category;
-    private String description;
-    private Double goalAmount;
-    private String priority;
+    private final String userId;
+    private final String name;
+    private final String category;
+    private final String description;
+    private final Double goalAmount;
+    private final String priority;
 
     public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority) {
         this.userId = userId;
@@ -68,7 +70,6 @@ public class CreateGoalRequest {
         private String description;
         private Double goalAmount;
         private String priority;
-
         private String userId;
 
         public Builder withName(String name) {

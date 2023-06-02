@@ -14,8 +14,8 @@ public class CreateGoalLambda extends LambdaActivityRunner<CreateGoalRequest, Cr
                     CreateGoalRequest unauthenticatedRequest = input.fromBody(CreateGoalRequest.class);
                     return input.fromUserClaims(claims ->
                             CreateGoalRequest.builder()
-                                    .withUserId(claims.get("userId"))
-                                    .withName(claims.get("name"))
+                                    .withUserId(claims.get("email"))
+                                    .withName(unauthenticatedRequest.getName())
                                     .withCategory(unauthenticatedRequest.getCategory())
                                     .withPriority(unauthenticatedRequest.getPriority())
                                     .withDescription(unauthenticatedRequest.getDescription())

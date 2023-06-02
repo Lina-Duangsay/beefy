@@ -3,6 +3,7 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
+
 /*
 The code below this comment is equivalent to...
 const EMPTY_DATASTORE_STATE = {
@@ -42,12 +43,13 @@ class SearchPlaylists extends BindingClass {
      * Add the header to the page and load the MusicPlaylistClient.
      */
     mount() {
-        document.getElementById('add-song').addEventListener('click', this.addSong);
+        // Wire up the form's 'submit' event and the button's 'click' event to the search method.
+        // document.getElementById('search-playlists-form').addEventListener('submit', this.search);
+        // document.getElementById('search-btn').addEventListener('click', this.search);
 
         this.header.addHeaderToPage();
 
-        this.client = new BeefyClient();
-        this.clientLoaded();
+        this.client = new MusicPlaylistClient();
     }
 
     /**
@@ -101,7 +103,31 @@ class SearchPlaylists extends BindingClass {
         }
     }
 
-\
+    /**
+     * Create appropriate HTML for displaying searchResults on the page.
+     * @param searchResults An array of playlists objects to be displayed on the page.
+     * @returns A string of HTML suitable for being dropped on the page.
+     */
+    getHTMLForSearchResults(searchResults) {
+        if (searchResults.length === 0) {
+            return '<h4>No results found</h4>';
+        }
+
+        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        for (const res of searchResults) {
+            html += `
+            <tr>
+                <td>
+                    <a href="playlist.html?id=${res.id}">${res.name}</a>
+                </td>
+                <td>${res.songCount}</td>
+                <td>${res.tags?.join(', ')}</td>
+            </tr>`;
+        }
+        html += '</table>';
+
+        return html;
+    }
 
 }
 
