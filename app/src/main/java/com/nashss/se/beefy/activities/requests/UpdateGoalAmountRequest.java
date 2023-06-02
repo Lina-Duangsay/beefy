@@ -1,7 +1,8 @@
 package com.nashss.se.beefy.activities.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-
+@JsonDeserialize(builder = UpdateGoalAmountRequest.Builder.class)
 public class UpdateGoalAmountRequest {
     private final String userId;
     private final String goalId;
@@ -33,7 +34,7 @@ public class UpdateGoalAmountRequest {
                 ", amount=" + amount +
                 '}';
     }
-
+    //CHECKSTYLE:OFF: Builder
     public static Builder builder() {
         return new Builder();
     }

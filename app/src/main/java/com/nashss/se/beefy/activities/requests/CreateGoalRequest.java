@@ -1,7 +1,9 @@
 package com.nashss.se.beefy.activities.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+@JsonDeserialize(builder = CreateGoalRequest.Builder.class)
 public class CreateGoalRequest {
 
     private final String userId;
