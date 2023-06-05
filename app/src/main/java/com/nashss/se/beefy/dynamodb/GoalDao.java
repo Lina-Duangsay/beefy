@@ -66,4 +66,7 @@ public class GoalDao {
         return goal;
     }
 
+    public void deleteGoal(Goal goal) {
+        this.mapper.delete(goal);
+    }
 }
