@@ -29,4 +29,6 @@ public interface ServiceComponent {
      * @return UpdateGoalAmountActivity
      */
     UpdateGoalAmountActivity provideUpdateGoalAmountActivity();
+
+    UpdateGoalDescriptionActivity provideUpdateGoalDescriptionActivity();
 }
