@@ -3,7 +3,6 @@ package com.nashss.se.beefy.activities.requests;
 public class GetGoalRequest {
     private final String goalId;
 
-
     public GetGoalRequest(String goalId) {
         this.goalId = goalId;
     }

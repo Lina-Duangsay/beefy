@@ -47,11 +47,11 @@ public class GoalDao {
         if (goalId == null) {
             metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 1);
             throw new GoalNotFoundException("goal id: " + goalId + " did not return any results!");
-
         }
 
         metricsPublisher.addCount(GETGOAL_GOALNOTFOUND_COUNT, 0);
         metricsPublisher.addCount(GETGOAL_USERNOTFOUND_COUNT, 0);
+
         return goal;
     }
 
@@ -66,4 +66,12 @@ public class GoalDao {
         return goal;
     }
 
+    /**
+     * Deletes the given goal from the table.
+     *
+     * @param goal The goal to delete
+     */
+    public void deleteGoal(Goal goal) {
+        this.mapper.delete(goal);
+    }
 }
