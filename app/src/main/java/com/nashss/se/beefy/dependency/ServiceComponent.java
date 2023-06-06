@@ -41,4 +41,6 @@ public interface ServiceComponent {
      * @return DeleteGoalActivity
      */
     DeleteGoalActivity provideDeleteGoalActivity();
+
+    GetGoalByCategoryActivity provideGetGoalByCategoryActivity();
 }

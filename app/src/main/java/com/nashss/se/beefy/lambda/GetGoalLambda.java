@@ -7,7 +7,7 @@ import com.nashss.se.beefy.activities.results.GetGoalResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GetGoalLambda extends com.nashss.se.beefy.lambda.LambdaActivityRunner<GetGoalRequest, GetGoalResult>
+public class GetGoalLambda extends LambdaActivityRunner<GetGoalRequest, GetGoalResult>
         implements RequestHandler<LambdaRequest<GetGoalRequest>, LambdaResponse> {
     private final Logger log = LogManager.getLogger();
 
