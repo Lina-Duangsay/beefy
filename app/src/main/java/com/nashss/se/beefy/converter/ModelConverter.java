@@ -3,6 +3,9 @@ package com.nashss.se.beefy.converter;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.models.GoalModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Converts between Data and API models.
  */
@@ -24,6 +27,14 @@ public class ModelConverter {
                 .withPriority(goal.getPriority())
                 .withGoalId(goal.getGoalId())
                 .build();
+    }
+
+    public List<GoalModel> toGoalModelList(List<Goal> goalList) {
+        List<GoalModel> beerModels = new ArrayList<>();
+        for (Goal goals : goalList) {
+            beerModels.add(toGoalModel(goals));
+        }
+        return beerModels;
     }
 
 

@@ -2,6 +2,9 @@ package com.nashss.se.beefy.dynamodb;
 
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.exceptions.GoalNotFoundException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
@@ -10,6 +13,11 @@ import com.nashss.se.beefy.metrics.MetricsPublisher;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.nashss.se.beefy.dynamodb.models.Goal.GOALS_BY_CATEGORY_INDEX;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_GOALNOTFOUND_COUNT;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_USERNOTFOUND_COUNT;
 
@@ -74,4 +82,25 @@ public class GoalDao {
     public void deleteGoal(Goal goal) {
         this.mapper.delete(goal);
     }
+
+
+    /**
+     * GSI for retrieving a goal by category.
+     *
+     * @param category The category to retrieve
+     * @return List of Goals with that category.
+     */
+    public List<Goal> getGoalByCategory(String category) {
+        DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":category", new AttributeValue().withS("category"));
+        DynamoDBQueryExpression<Goal> queryExpression = new DynamoDBQueryExpression<Goal>()
+                .withIndexName(GOALS_BY_CATEGORY_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("category = :beerType")
+                .withExpressionAttributeValues(valueMap);
+
+        return mapper.query(Goal.class, queryExpression);
+    }
+
 }
