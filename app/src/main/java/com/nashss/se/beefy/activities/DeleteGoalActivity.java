@@ -1,9 +1,7 @@
 package com.nashss.se.beefy.activities;
 
 import com.nashss.se.beefy.activities.requests.DeleteGoalRequest;
-import com.nashss.se.beefy.activities.requests.GetGoalRequest;
 import com.nashss.se.beefy.activities.results.DeleteGoalResult;
-import com.nashss.se.beefy.activities.results.GetGoalResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;

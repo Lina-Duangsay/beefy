@@ -30,5 +30,15 @@ public interface ServiceComponent {
      */
     UpdateGoalAmountActivity provideUpdateGoalAmountActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return UpdateGoalDescriptionActivity
+     */
     UpdateGoalDescriptionActivity provideUpdateGoalDescriptionActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return DeleteGoalActivity
+     */
+    DeleteGoalActivity provideDeleteGoalActivity();
 }
