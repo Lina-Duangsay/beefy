@@ -93,7 +93,7 @@ public class GoalDao {
     public List<Goal> getGoalByCategory(String category) {
         DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":category", new AttributeValue().withS("category"));
+        valueMap.put(":category", new AttributeValue().withS(category));
         DynamoDBQueryExpression<Goal> queryExpression = new DynamoDBQueryExpression<Goal>()
                 .withIndexName(GOALS_BY_CATEGORY_INDEX)
                 .withConsistentRead(false)
