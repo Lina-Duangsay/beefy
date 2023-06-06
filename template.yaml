@@ -259,7 +259,7 @@ Resources:
         BeefyService:
           Type: Api
           Properties:
-            Path: /goals/{category}
+            Path: /goals/category/{category}
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -439,6 +439,8 @@ Resources:
     Properties:
       AttributeDefinitions:
         - AttributeName: "goalId"
+          AttributeType: "S"
+        - AttributeName: "category"
           AttributeType: "S"
       KeySchema:
         - AttributeName: "goalId"

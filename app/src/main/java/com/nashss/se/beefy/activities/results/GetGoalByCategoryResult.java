@@ -29,7 +29,7 @@ public class GetGoalByCategoryResult {
     }
 
     public static class Builder {
-        private List<GoalModel>  goalModelList;
+        private List<GoalModel> goalModelList;
 
         public Builder withGoalModelList(List<GoalModel> goalModelList){
             this.goalModelList = new ArrayList<>(goalModelList);

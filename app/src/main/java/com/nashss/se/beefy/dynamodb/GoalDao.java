@@ -97,7 +97,7 @@ public class GoalDao {
         DynamoDBQueryExpression<Goal> queryExpression = new DynamoDBQueryExpression<Goal>()
                 .withIndexName(GOALS_BY_CATEGORY_INDEX)
                 .withConsistentRead(false)
-                .withKeyConditionExpression("category = :beerType")
+                .withKeyConditionExpression("category = :category")
                 .withExpressionAttributeValues(valueMap);
 
         return mapper.query(Goal.class, queryExpression);

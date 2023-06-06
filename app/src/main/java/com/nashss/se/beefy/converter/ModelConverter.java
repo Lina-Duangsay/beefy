@@ -30,11 +30,11 @@ public class ModelConverter {
     }
 
     public List<GoalModel> toGoalModelList(List<Goal> goalList) {
-        List<GoalModel> beerModels = new ArrayList<>();
+        List<GoalModel> goalModels = new ArrayList<>();
         for (Goal goals : goalList) {
-            beerModels.add(toGoalModel(goals));
+            goalModels.add(toGoalModel(goals));
         }
-        return beerModels;
+        return goalModels;
     }
 
 
