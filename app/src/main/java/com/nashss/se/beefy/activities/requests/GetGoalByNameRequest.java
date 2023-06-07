@@ -1,5 +1,8 @@
 package com.nashss.se.beefy.activities.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(builder = GetGoalByNameRequest.Builder.class)
 public class GetGoalByNameRequest {
     private final String name;
 

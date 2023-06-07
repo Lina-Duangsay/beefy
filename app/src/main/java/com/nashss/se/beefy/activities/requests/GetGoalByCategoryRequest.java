@@ -1,5 +1,8 @@
 package com.nashss.se.beefy.activities.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(builder = GetGoalByCategoryRequest.Builder.class)
 public class GetGoalByCategoryRequest {
     private final String category;
 

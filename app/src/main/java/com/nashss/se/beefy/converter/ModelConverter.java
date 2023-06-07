@@ -26,6 +26,7 @@ public class ModelConverter {
                 .withGoalAmount(goal.getGoalAmount())
                 .withPriority(goal.getPriority())
                 .withGoalId(goal.getGoalId())
+                .withCompletionStatus(goal.getCompletionStatus())
                 .build();
     }
 
