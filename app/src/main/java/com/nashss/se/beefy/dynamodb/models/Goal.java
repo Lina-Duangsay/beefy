@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Goal {
 
     public static final String GOALS_BY_CATEGORY_INDEX = "GoalsByCategoryIndex";
+    public static final String GOALS_BY_NAME_INDEX = "GoalsByNameIndex";
     private String userId;
     private String name;
     private String category;
@@ -34,7 +35,8 @@ public class Goal {
         this.userId = userId;
     }
 
-    @DynamoDBAttribute(attributeName = "name")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = GOALS_BY_NAME_INDEX, attributeName = "goalName")
+    @DynamoDBAttribute(attributeName = "goalName")
     public String getName() {
         return name;
     }

@@ -43,4 +43,6 @@ public interface ServiceComponent {
     DeleteGoalActivity provideDeleteGoalActivity();
 
     GetGoalByCategoryActivity provideGetGoalByCategoryActivity();
+
+    GetGoalByNameActivity provideGetGoalByNameGSIActivity();
 }

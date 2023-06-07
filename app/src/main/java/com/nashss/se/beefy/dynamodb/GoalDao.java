@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.nashss.se.beefy.dynamodb.models.Goal.GOALS_BY_CATEGORY_INDEX;
+import static com.nashss.se.beefy.dynamodb.models.Goal.GOALS_BY_NAME_INDEX;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_GOALNOTFOUND_COUNT;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_USERNOTFOUND_COUNT;
 
@@ -98,6 +99,25 @@ public class GoalDao {
                 .withIndexName(GOALS_BY_CATEGORY_INDEX)
                 .withConsistentRead(false)
                 .withKeyConditionExpression("category = :category")
+                .withExpressionAttributeValues(valueMap);
+
+        return mapper.query(Goal.class, queryExpression);
+    }
+
+    /**
+     * GSI for retrieving a goal by category.
+     *
+     * @param name The category to retrieve
+     * @return List of Goals with that category.
+     */
+    public List<Goal> getGoalByName(String name) {
+        DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":goalName", new AttributeValue().withS(name));
+        DynamoDBQueryExpression<Goal> queryExpression = new DynamoDBQueryExpression<Goal>()
+                .withIndexName(GOALS_BY_NAME_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("goalName = :goalName")
                 .withExpressionAttributeValues(valueMap);
 
         return mapper.query(Goal.class, queryExpression);
