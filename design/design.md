@@ -9,18 +9,17 @@ see and plan your savings will provide motivation and excitement towards getting
 
 1. As a user, I want to *create a goal*.
 2. As a user, I want to *view all goals*.
-3. As a user, I want to *search for a goal by name (partial or full search)*.
-4. As a user, I want to *search for a goal by category*.
-5. As a user, I want to *search for a goal by priority*.
-6. As a user, I want to *view a goal by name*.
-7. As a user, I want to *view a goal by category*.
-8. As a user, I want to *update a goal's amount*.
-9. As a user, I want to *add a description to the goal*.
-10. As a user, I want to *update the description*.
-11. As a user, I want to *delete a goal*.
-12. As a user, I want to *mark a goal as complete*.
-13. As a user, I want to *tag goals by priority -> HIGH, LOW, NORMAL*.
-14. As a user, I want to *categorize the goal*.
+3. As a user, I want to *get a list of goals by category*.
+4. As a user, I want to *get a list of goals by priority*.
+5. As a user, I want to *view a goal by name*.
+6. As a user, I want to *view a goal by category*.
+7. As a user, I want to *update a goal's amount*.
+8. As a user, I want to *add a description to the goal*.
+9. As a user, I want to *update the description*.
+10. As a user, I want to *delete a goal*.
+11. As a user, I want to *mark a goal as complete*.
+12. As a user, I want to *tag goals by priority -> HIGH, LOW, NORMAL*.
+13. As a user, I want to *categorize the goal*.
 
 ## Stretch Goals
 1. As a user, I want to *share a goal with someone*.
@@ -53,19 +52,10 @@ see and plan your savings will provide motivation and excitement towards getting
 ---
 ## API Endpoints
 
-1. SearchGoalByName --> full matching on name
-   1. allows the user to search for a goal by the name
-   2. GET
-   3. /goals/search
-   4. user authenticated
-   5. response: (returns a list of goals that match the request)
-      6. name, category, goalId, description, goalAmount, priority, userId
-
-
-2. SearchGoalByCategory
+2. GetGoalByName
    1. allows the user to search for a goal by the category
    2. GET
-   3. /goals/search
+   3. /goals/name/{name}
    4. user authenticated
 
 
@@ -88,7 +78,6 @@ see and plan your savings will provide motivation and excitement towards getting
    2. GET
    3. /goals/{name}
    4. user authenticated
-
 
 6. UpdateGoalAmount
    1. allows user to update the goal amount
@@ -118,7 +107,6 @@ request:
       }
    }
    ```
-
 
 7. CreateGoal
    8. allows user to create a goal
