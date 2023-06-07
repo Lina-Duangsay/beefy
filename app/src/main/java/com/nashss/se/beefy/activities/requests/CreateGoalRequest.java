@@ -50,7 +50,7 @@ public class CreateGoalRequest {
     public String toString() {
         return "CreateGoalRequest{" +
                 "userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
+                ", goalName='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 ", goalAmount=" + goalAmount +
