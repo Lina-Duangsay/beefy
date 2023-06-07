@@ -45,4 +45,6 @@ public interface ServiceComponent {
     GetGoalByCategoryActivity provideGetGoalByCategoryActivity();
 
     GetGoalByNameActivity provideGetGoalByNameGSIActivity();
+
+    UpdateCompletionStatusActivity provideUpdateCompletionStatusActivity();
 }

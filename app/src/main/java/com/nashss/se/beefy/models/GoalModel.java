@@ -10,9 +10,10 @@ public class GoalModel {
     private final Double goalAmount;
     private final String priority;
     private final String goalId;
+    private final Boolean completionStatus;
 
     public GoalModel(String userId, String name, String category, String description,
-                     Double goalAmount, String priority, String goalId) {
+                     Double goalAmount, String priority, String goalId, Boolean completionStatus) {
         this.userId = userId;
         this.name = name;
         this.category = category;
@@ -20,6 +21,7 @@ public class GoalModel {
         this.goalAmount = goalAmount;
         this.priority = priority;
         this.goalId = goalId;
+        this.completionStatus = completionStatus;
     }
 
     public String getUserId() {
@@ -50,6 +52,10 @@ public class GoalModel {
         return goalId;
     }
 
+    public Boolean getCompletionStatus() {
+        return completionStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,12 +64,12 @@ public class GoalModel {
         return Objects.equals(userId, goalModel.userId) && Objects.equals(name, goalModel.name)
                 && Objects.equals(category, goalModel.category) && Objects.equals(description, goalModel.description)
                 && Objects.equals(goalAmount, goalModel.goalAmount) && Objects.equals(priority, goalModel.priority)
-                && Objects.equals(goalId, goalModel.goalId);
+                && Objects.equals(goalId, goalModel.goalId) && Objects.equals(completionStatus, goalModel.completionStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, category, description, goalAmount, priority, goalId);
+        return Objects.hash(userId, name, category, description, goalAmount, priority, goalId, completionStatus);
     }
 
     //CHECKSTYLE:OFF:Builder
@@ -80,6 +86,7 @@ public class GoalModel {
         private Double goalAmount;
         private String priority;
         private String goalId;
+        private Boolean completionStatus;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -116,8 +123,13 @@ public class GoalModel {
             return this;
         }
 
+        public Builder withCompletionStatus(Boolean completionStatus) {
+            this.completionStatus = completionStatus;
+            return this;
+        }
+
         public GoalModel build() {
-            return new GoalModel(userId, name, category, description, goalAmount, priority, goalId);
+            return new GoalModel(userId, name, category, description, goalAmount, priority, goalId, completionStatus);
         }
     }
 

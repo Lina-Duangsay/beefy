@@ -12,14 +12,16 @@ public class CreateGoalRequest {
     private final String description;
     private final Double goalAmount;
     private final String priority;
+    private final Boolean completionStatus;
 
-    public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority) {
+    public CreateGoalRequest(String userId, String name, String category, String description, Double goalAmount, String priority,Boolean completionStatus) {
         this.userId = userId;
         this.name = name;
         this.category = category;
         this.description = description;
         this.goalAmount = goalAmount;
         this.priority = priority;
+        this.completionStatus = completionStatus;
     }
 
     public String getUserId() {
@@ -46,6 +48,10 @@ public class CreateGoalRequest {
         return priority;
     }
 
+    public Boolean getCompletionStatus() {
+        return completionStatus;
+    }
+
     @Override
     public String toString() {
         return "CreateGoalRequest{" +
@@ -55,6 +61,7 @@ public class CreateGoalRequest {
                 ", description='" + description + '\'' +
                 ", goalAmount=" + goalAmount +
                 ", priority='" + priority + '\'' +
+                ", completionStatus='" + completionStatus + '\'' +
                 '}';
     }
 
@@ -71,6 +78,7 @@ public class CreateGoalRequest {
         private Double goalAmount;
         private String priority;
         private String userId;
+        private Boolean completionStatus;
 
         public Builder withName(String name) {
             this.name = name;
@@ -102,8 +110,13 @@ public class CreateGoalRequest {
             return this;
         }
 
+        public Builder withCompletionStatus(Boolean completionStatus) {
+            this.completionStatus = completionStatus;
+            return this;
+        }
+
         public CreateGoalRequest build() {
-            return new CreateGoalRequest(userId, name, category, description, goalAmount, priority);
+            return new CreateGoalRequest(userId, name, category, description, goalAmount, priority, completionStatus);
         }
     }
 
