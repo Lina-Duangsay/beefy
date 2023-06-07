@@ -21,6 +21,7 @@ public class CreateGoalLambda extends LambdaActivityRunner<CreateGoalRequest, Cr
                                     .withDescription(unauthenticatedRequest.getDescription())
                                     .withGoalAmount(unauthenticatedRequest.getGoalAmount())
                                     .withName(unauthenticatedRequest.getName())
+                                    .withCompletionStatus(unauthenticatedRequest.getCompletionStatus())
                                     .build());
                 },
                 (request, serviceComponent) ->

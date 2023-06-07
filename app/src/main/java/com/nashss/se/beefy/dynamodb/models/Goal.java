@@ -16,6 +16,7 @@ public class Goal {
     private Double goalAmount;
     private String priority;
     private String goalId;
+    private Boolean completionStatus;
 
     @DynamoDBHashKey(attributeName = "goalId")
     public String getGoalId() {
@@ -83,16 +84,27 @@ public class Goal {
         this.priority = priority;
     }
 
+    @DynamoDBAttribute(attributeName = "completionStatus")
+    public Boolean getCompletionStatus() {
+        return completionStatus;
+    }
+
+    public void setCompletionStatus(Boolean completionStatus) {
+        this.completionStatus = completionStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Goal goals = (Goal) o;
-        return Objects.equals(userId, goals.userId) && Objects.equals(name, goals.name) && Objects.equals(category, goals.category) && Objects.equals(description, goals.description) && Objects.equals(goalAmount, goals.goalAmount) && Objects.equals(priority, goals.priority) && Objects.equals(goalId, goals.goalId);
+        return Objects.equals(userId, goals.userId) && Objects.equals(name, goals.name) && Objects.equals(category, goals.category)
+                && Objects.equals(description, goals.description) && Objects.equals(goalAmount, goals.goalAmount)
+                && Objects.equals(priority, goals.priority) && Objects.equals(goalId, goals.goalId) && Objects.equals(completionStatus, goals.completionStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, category, description, goalAmount, priority, goalId);
+        return Objects.hash(userId, name, category, description, goalAmount, priority, goalId, completionStatus);
     }
 }

@@ -57,6 +57,7 @@ public class CreateGoalActivity {
         newGoal.setPriority(request.getPriority());
         newGoal.setCategory(request.getCategory());
         newGoal.setUserId(request.getUserId());
+        newGoal.setCompletionStatus(false);
 
         goalDao.saveGoal(newGoal);
 
