@@ -42,15 +42,13 @@ class CreateGoal extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-        // const userId = document.getElementById('user-id').value;
         const name = document.getElementById('goal-name').value;
-        const amount = document.getElementById('amount').value;
+        const goalAmount = document.getElementById('goalAmount').value;
         const category = document.getElementById('category').value;
         const description = document.getElementById('description').value;
-        // const priority = document.getElementById('priority').value;
+        const prioirty = document.getElementById('priority').value;
 
-
-        const goal = await this.client.createGoal(name, amount, category, description, (error) => {
+        const goal = await this.client.createGoal(name, goalAmount, category, description, prioirty, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -64,7 +62,7 @@ class CreateGoal extends BindingClass {
     redirectToViewGoal() {
         const goal = this.dataStore.get('goal');
         if (goal != null) {
-            window.location.href = `/goal.html?id=${goal.id}`;
+            window.location.href = `/goal/{goal.id}`;
         }
     }
 }

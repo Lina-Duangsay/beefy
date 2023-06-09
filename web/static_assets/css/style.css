@@ -1,9 +1,9 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #CAA2DE;
+    --primary-color: #F9DEC9;
     --secondary-color: #ffffff;
-    --tertiary-color: #6997cc;
-    --error-color: #EE3A23;
+    --tertiary-color: #99b2dd;
+    --error-color: #f17197;
 }
 
 .background {
