@@ -8,59 +8,52 @@
     <meta charset="UTF-8">
 </head>
 
-<header class="header" id="header">
-    <a href="index.html">
-        <img src="beefers.png" alt="beef logo placeholder" style="width:150px;height:150px;">
-    </a>
-</header>
+<body>
+    <header class="header" id="header">
+        <a href="index.html">
+        </a>
+    </header>
 
-<body class="background">
-    <div class="card">
+    <div class="background">
+        <div class="card">
+            <h2>Create Goal</h2>
+            <hr class="dashed">
 
-        <center>
-
-        <h2 style="color:#e9afa3;">Create Goal</h2>
-        <hr class="dashed">
-
-        </center>
-
-            <center>
             <form class="card-content" id="create-goal-form">
-                <p class="hidden error" id="error-message"> </p>
+                <p class="hidden error" id="error-message"></p>
 
+                <div class="form-field">
+                    <label for="goal-name"><b>Name</b></label>
+                    <input type="text" required class="validated-field" id="goal-name" placeholder="Shopping Spree"
+                        autofocus>
+                </div>
 
-                <p class="form-field">
-                <h3 style="color:#99b2dd;"><label> <b> Name </b></label></h3>
-                <input type="text" required class="validated-field" id="goal-name" placeholder="Shopping Spree" autofocus>
-                </p>
+                <div class="form-field">
+                    <label for="category"><b>Category</b></label>
+                    <input type="text" required class="validated-field" id="category" placeholder="Shopping" autofocus>
+                </div>
 
+                <div class="form-field">
+                    <label for="goalAmount"><b>Amount</b></label>
+                    <input type="number" required class="validated-field" id="goalAmount" min="0" placeholder="500.00"
+                        autofocus>
+                </div>
 
-                <p class="form-field">
-                <h3 style="color:#99b2dd;"><label> <b> Category </b></label></h3>
-                <input type="text" required class="validated-field" id="category" placeholder="Shopping" autofocus>
-                </p>
+                <div class="form-field">
+                    <label for="priority"><b>Priority</b></label>
+                    <select name="priority" required class="validated-field" id="priority">
+                        <option value="HIGH">HIGH</option>
+                        <option value="LOW">LOW</option>
+                        <option value="NORMAL">NORMAL</option>
+                        <option value="NONE">NONE</option>
+                    </select>
+                </div>
 
-                <p class="form-field">
-                <h3 style="color:#99b2dd;"><label> <b> Amount </b></label></h3>
-                <input type="number" required class="validated-field" id="goalAmount" min="0" placeholder="500.00" autofocus>
-                </p>
-
-                <p class="form-field">
-                <h3 style="color:#99b2dd;"><label> <b> Priority </b></label></h3>
-                <select name="priority" required class="validated-field" id="priority">
-                    <option value="HIGH">HIGH</option>
-                    <option value="LOW">LOW</option>
-                    <option value="NORMAL">NORMAL</option>
-                    <option value="NONE">NONE</option>
-                </select>
-                </p>
-
-                <p class="form-field">
-                <h3 style="color:#99b2dd;"><label> <b> Description </b></label></h3>
-                <textarea rows="5" cols="23" required class="validated-field" id="description"
-                    placeholder="I really want to just spend some money for fun."></textarea>
-                </p>
-
+                <div class="form-field">
+                    <label for="description"><b>Description</b></label>
+                    <textarea rows="5" cols="23" required class="validated-field" id="description"
+                        placeholder="I really want to just spend some money for fun."></textarea>
+                </div>        
                 <p>
 
                     <hr style="border-top: dotted 1px;" />

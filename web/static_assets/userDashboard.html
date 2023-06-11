@@ -3,18 +3,21 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css">
+
+
     <style>
         .navbar {
             overflow: hidden;
-            background-color: #333;
+            background-color: #f9dec9;
             font-family: Arial, Helvetica, sans-serif;
         }
 
         .navbar a {
             float: left;
             font-size: 16px;
-            color: white;
+            color: #a84747;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -30,7 +33,7 @@
             font-size: 16px;
             border: none;
             outline: none;
-            color: white;
+            color: #a84747;
             padding: 14px 16px;
             background-color: inherit;
             font-family: inherit;
@@ -40,7 +43,7 @@
         .navbar a:hover,
         .dropdown:hover .dropbtn,
         .dropbtn:focus {
-            background-color: red;
+            background-color: #e5a49b;
         }
 
         .dropdown-content {
@@ -72,23 +75,32 @@
 </head>
 
 <body>
-<header class="header" id="header">
 
-</header>
+<header class="header" id="header"></header>
+
     <div class="navbar">
         <a href="index.html">Home</a>
-        <a href="#news">News</a>
         <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Dropdown
+            <button class="dropbtn" onclick="myFunction()">Menu
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content" id="myDropdown">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="createGoal.html">Create Goal</a>
+                <a href="#">View All Goals</a>
+                <a href="#">View Goal</a>
+                <a href="#">Update Goal</a>
             </div>
         </div>
     </div>
+
+    <center>
+        <spacer></spacer>
+        <div class="headerbanner">
+        <h1 style= "color: #99b2dd" > Welcome Back! </h1>
+        </div>
+    </center>
+
+
 
     <h3>Dropdown Menu inside a Navigation Bar</h3>
     <p>Click on the "Dropdown" link to see the dropdown menu.</p>
