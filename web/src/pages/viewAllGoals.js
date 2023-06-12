@@ -22,11 +22,9 @@ class ViewAllGoals extends BindingClass {
 
         this.bindClassMethods(['mount'], this);
 
-        // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        this.header = new Header();
     }
 
     /**

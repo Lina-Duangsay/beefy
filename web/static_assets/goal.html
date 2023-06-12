@@ -2,33 +2,69 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/viewGoal.js"></script>
+    <title>View All Goals</title>
+    <script src="assets/viewAllGoals.js"></script>
+    <script type="component" src="table.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
 </head>
 
 <body class="background">
+
     <header class="header" id="header"></header>
-    <div class="card">
-        <h2 id="playlist-name"></h2>
-        <h3>Created by: <span id="playlist-owner"></span></h3>
-        <div class="tags" id="tags"></div>
-        <ol id="songs"></ol>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Menu
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="createGoal.html">Create Goal</a>
+                <a href="viewAllGoals.html">View All Goals</a>
+                <a href="viewGoal.html">View Goal</a>
+                <a href="updateGoal.html">Update Goal</a>
+            </div>
+        </div>
     </div>
-    <div class="card">
-        <h2>Add Song to Playlist</h2>
-        <form class="card-content" id="add-song-form">
-            <p class="hidden error" id="error-message"> </p>
-            <p class="form-field">
-                <label>Album Asin</label>
-                <input type="text" required class="validated-field" id="album-asin" placeholder="B00000000" autofocus>
-            </p>
-            <p class="form-field">
-                <label>Track Number</label>
-                <input type="number" id="track-number">
-            </p>
-        </form>
-        <a href="#" class="button" id="add-song">Add Song</a>
-    </div>
+
+    <div class="viewingGoal">
+        <br>
+        <br>
+
+        <div class="creation" id="creation">
+            <div class="card">
+                <h1 style="color:#99b2dd">View Goal By ID:</h2>
+                    <br>
+                    <hr class="dashed">
+                    <br>
+                    <br>
+
+                    <form class="card-content" id="view-goal-form">
+                        <p class="hidden error" id="error-message"></p>
+
+                        <div class="form-field">
+                            <label for="goalId"><b>Goal ID:</b></label>
+                            <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ"
+                                autofocus>
+                        </div>
+
+                        <p>
+                            <hr style="border-top: dotted 1px;" />
+                            <br>
+
+                        </p>
+
+                        <a href="#" class="button" id="view">View Goal</a>
+                    </form>
+                    <br>
+            </div>
+
+
+
+        </div>
+
 </body>
 
 </html>

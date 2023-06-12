@@ -11,7 +11,7 @@ export default class BeefyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getGoal', 'createGoal'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'viewAllGoals', 'createGoal'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -84,13 +84,22 @@ export default class BeefyClient extends BindingClass {
      */
     async getGoal(goalId, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`goals/${goalId}`);
+            const token = await this.getTokenOrThrow("Only authenticated users can view goals.");
+            const response = await this.axiosClient.get(`goals/${goalId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                data: {
+                    goalId: goalId
+                }
+            });
             return response.data.goal;
         } catch (error) {
-            this.handleError(error, errorCallback)
+            this.handleError(error, errorCallback);
         }
     }
 
+    
     /**
      * Create a new goal owned by the current user.
      * @param name The name of the goal to create.
@@ -117,6 +126,77 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
+    async updateGoalAmount(goalId, amount, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updateAmount/${goalId}`, {
+                goalId: goalId,
+                amount: amount
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async updateGoalDescription(goalId, description, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updateDescription/${goalId}`, {
+                goalId: goalId,
+                description: description
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async updateGoalPriority(goalId, priority, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updatePriority/${goalId}`, {
+                goalId: goalId,
+                priority: priority
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    
+    async deleteGoal(goalId, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.delete(`goals/deleteGoal/${goalId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    goalId: goalId
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+
 
     /**
     get all order data for order table
@@ -124,9 +204,15 @@ export default class BeefyClient extends BindingClass {
 
     async viewAllGoals() {
         try {
-            const response = await this.axiosClient.get(`/goals/`);
+            const token = await this.getTokenOrThrow("Only authenticated users can view goals.");
+            const response = await this.axiosClient.get(`/goals/`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             const goals = response.data.goals.map(goal => {
-                const { id: goalId, name, category, goalAmount, description, priority } = order;
+                const { id: goalId, name, category, goalAmount, description, priority } = goal;
                 return {
                     goalId,
                     name,
@@ -141,6 +227,9 @@ export default class BeefyClient extends BindingClass {
             this.handleError(error, errorCallback);
         }
     }
+
+
+
 
 
     // /**
@@ -225,6 +314,7 @@ export default class BeefyClient extends BindingClass {
     //     }
 
     // }
+
 
     /**
      * Helper method to log the error and run any error functions.

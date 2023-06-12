@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -13,7 +12,23 @@
   
   <header class="header" id="header"></header>
 
-  <div class="card">
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">Menu
+        <i class="drop"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="createGoal.html">Create Goal</a>
+        <a href="viewAllGoals.html">View All Goals</a>
+        <a href="viewGoal.html">View Goal</a>
+        <a href="updateGoal.html">Update Goal</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cardington">
 
     <h1 style="color: #ff7563;">Goals</h1>
     <hr class="dashed">
@@ -21,10 +36,33 @@
 
     <div id="table-container"></div>
     <p class="button-group">
-      <a href="updateGoal.html">Update Goal</a>
     </p>
 
   </div>
+
+  <script>
+
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+      if (!e.target.matches('.dropbtn')) {
+        var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
+
+
+  </script>
+
 </body>
+
+
 
 </html>

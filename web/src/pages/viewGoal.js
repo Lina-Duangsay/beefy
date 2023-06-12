@@ -9,10 +9,9 @@ import DataStore from "../util/DataStore";
 class ViewGoal extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addGoalToPage', 'retrieveGoal'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addGoalToPage'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addGoalToPage);
-        this.dataStore.addChangeListener(this.retrieveGoal);
 
         this.header = new Header(this.dataStore);
         console.log("viewgoal constructor");
@@ -29,11 +28,12 @@ class ViewGoal extends BindingClass {
         this.dataStore.set('goal', goal);
     }
 
+
     /**
      * Add the header to the page and load the BeefyClient.
      */
     mount() {
-        document.getElementById('add-data').addEventListener('click', this.addData);
+
         document.getElementById('submit').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
 

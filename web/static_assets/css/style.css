@@ -1,9 +1,9 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #F9DEC9;
+    --primary-color: #a88fac;
     --secondary-color: #ffffff;
-    --tertiary-color: #99b2dd;
-    --error-color: #f17197;
+    --tertiary-color: #826c7f;
+    --error-color: #5d4e60;
 }
 
 .background {
@@ -221,12 +221,12 @@ span {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    background-color: #6c92d4;
+    background-color: #d4b2d8;
     color: #fff;
 }
 
 .resumeButton {
-    background-color: #4caf61;
+    background-color: #8166ce;
 }
 
 .slider {
@@ -242,7 +242,7 @@ span {
 
 .image-container {
     width: 1500px;
-    background-color: pink;
+    background-color: d4b2d8;
     height: 300px;
     clear: both;
     position: relative;
@@ -290,6 +290,14 @@ span {
     align-items: center;
 }
 
+.cardington {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 .card {
     width: 400px;
     padding: 20px;
@@ -306,6 +314,14 @@ span {
 .card-content h2 {
     color: #b45441;
     text-align: center;
+}
+
+.cardUserInfo {
+    width: 600px;
+    padding: 20px;
+    background-color: #fffcfc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .form-field {
@@ -334,21 +350,21 @@ span {
     text-align: center;
     border-radius: 10px;
     margin-right:10px;
-    background-color: #6c92d4;
+    background-color: #d4b2d8;
     color: #fff;
 }
 
 
 .navbar {
     overflow: hidden;
-    background-color: #f9dec9;
+    background-color: #a88fac;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar a {
     float: left;
     font-size: 16px;
-    color: #a84747;
+    color: #74497a;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -364,7 +380,7 @@ span {
     font-size: 16px;
     border: none;
     outline: none;
-    color: #a84747;
+    color: #74497a;
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
@@ -374,7 +390,7 @@ span {
 .navbar a:hover,
 .dropdown:hover .dropbtn,
 .dropbtn:focus {
-    background-color: #e5a49b;
+    background-color: #9d69a5;
 }
 
 .dropdown-content {

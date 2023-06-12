@@ -4,7 +4,7 @@
 <head>
     <title>Update Amount</title>
     <script type="text/javascript" src="assets/home.js"></script>
-    <script type="module" src="assets/updateGoal.js"></script>
+    <script src="assets/updateGoalAmount.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
@@ -12,6 +12,23 @@
 </header>
 
 <body class="background">
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Menu
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="createGoal.html">Create Goal</a>
+                <a href="viewAllGoals.html">View All Goals</a>
+                <a href="viewGoal.html">View Goal</a>
+                <a href="updateGoal.html">Update Goal</a>
+            </div>
+        </div>
+    </div>
+
         <div class="creation" id="creation">
             <div class="card">
                 <h1 style="color:#99b2dd">Update Amount</h2>
@@ -24,14 +41,14 @@
                         <p class="hidden error" id="error-message"></p>
         
                         <div class="form-field">
-                            <label for="goalId"><b>Goal ID:</b></label>
+                            <label for="goalId"><b>Goal ID:</b></label> 
                             <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ"
                                 autofocus>
                         </div>
         
                         <div class="form-field">
-                            <label for="goalAmount"><b>New Amount:</b></label>
-                            <input type="number" required class="validated-field" id="goalAmount" min="0" placeholder="500.00" autofocus>
+                            <label for="amount"><b>New Amount:</b></label> <br>
+                            <input type="number" required class="validated-field" id="amount" min="0" placeholder="500.00" autofocus>
                         </div>
         
                         <p>
@@ -40,7 +57,7 @@
         
                         </p>
         
-                        <a href="#" class="button" id="create">Update Goal</a>
+                        <a href="#" class="button" id="update">Update Goal</a>
                     </form>
                     <br>
                     <p class="button-group">
@@ -48,6 +65,27 @@
                         <a href="userDashboard.html">Return to Dashboard</a>
                     </p>
             </div>
+
+            <script>
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                    document.getElementById("myDropdown").classList.toggle("show");
+                }
+
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function (e) {
+                    if (!e.target.matches('.dropbtn')) {
+                        var myDropdown = document.getElementById("myDropdown");
+                        if (myDropdown.classList.contains('show')) {
+                            myDropdown.classList.remove('show');
+                        }
+                    }
+                }
+
+
+            </script>
+
         </body>
 
 </html>

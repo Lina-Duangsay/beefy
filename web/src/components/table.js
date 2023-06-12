@@ -11,22 +11,22 @@ export default class Table extends BindingClass {
     }
 
     async addTableToPage() {
-        console.log('Table.js should be building...');
+        console.log('Table.js building...');
         const currentUser = await this.client.getIdentity();
-        const goals = await this.client.viewAllGoals(); // Call the viewAllGoals method
-        const table = this.buildTable(goals); // Pass the array of goals to the buildTable method
+        const data = await this.client.getData();
+        const table = this.buildTable(data);
         const container = document.getElementById('table-container');
-        table.classList.add('table-container');
+        table.classList.add('table-container'); 
         container.appendChild(table);
     }
 
-    buildTable(goals) {
-        if (!Array.isArray(goals)) {
-            console.error('Error: goals is not an array!');
+    buildTable(data) {
+        if (!Array.isArray(data)) {
+            console.error('Error: data is not an array!');
             return;
         }
         const table = document.createElement('table');
-        table.classList.add('table-container'); // Add a class to style the table
+        table.classList.add('table-container'); 
 
         // Create the table header row
         const headerRow = table.insertRow();
@@ -38,7 +38,7 @@ export default class Table extends BindingClass {
         });
 
         // Create the table body rows
-        goals.forEach(item => {
+        data.forEach(item => {
             const row = table.insertRow();
             row.classList.add('goal-row'); // Add a class to style the row
             const cells = [item.goalId, item.name, item.goalAmount, item.category, item.priority, item.completionStatus, item.description];

@@ -7,62 +7,6 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 
-        <style>
-            .slider {
-                width: 500px;
-                height: 300px;
-                background-color: yellow;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 0px;
-                text-align: center;
-                overflow: hidden;
-            }
-        
-            .image-container {
-                width: 1500px;
-                background-color: pink;
-                height: 300px;
-                clear: both;
-                position: relative;
-                -webkit-transition: left 2s;
-                -moz-transition: left 2s;
-                -o-transition: left 2s;
-                transition: left 2s;
-            }
-        
-            .slide {
-                float: left;
-                margin: 0px;
-                padding: 0px;
-                position: relative;
-            }
-        
-            #slide-1:target~.image-container {
-                left: 0px;
-            }
-        
-            #slide-2:target~.image-container {
-                left: -500px;
-            }
-        
-            #slide-3:target~.image-container {
-                left: -1000px;
-            }
-        
-            .buttons {
-                position: relative;
-                top: -20px;
-            }
-        
-            .buttons a {
-                display: inline-block;
-                height: 15px;
-                width: 15px;
-                border-radius: 50px;
-                background-color: rgb(153, 144, 238);
-            }
-        </style>
         
 </head>
 
@@ -72,11 +16,16 @@
     <body class="background"></body>
 
     <center>
-    <br><br>
+    <br>
+    <br>
 
     <h1 style="color:#99b2dd;"> Let's Start Saving!</h1>
-    <p> Say goodbye to impulse buying and say hello to meeting your financial goals! Beefy the Budget Buddy is here to help you save and plan for life's various desires.</p>
-
+    <br>
+    <p> Welcome to Beef! Designed to empower you in managing your wishlist with ease and financial foresight. </p>
+    <p>Are you tired of struggling to keep track of your desired items and finding it challenging to align them with your
+    budget?
+    </p> <p> Look no further! Beef is here to revolutionize your shopping experience.
+</p>
     <br>
     <hr style="border-top: dotted 1px;" />
     </center>
@@ -88,46 +37,15 @@
 <table border="1">
     <tr>
 
-        <td><div class="slider">
-        <span id="slide-1"></span>
-        <span id="slide-2"></span>
-        <span id="slide-3"></span>
-        <div class="image-container">
-            <img src="https://cdn.discordapp.com/attachments/302274214902235138/1113920571521118369/F1AAEDAA-4D7F-4332-9094-09C4AD9786CD.jpg" class="slide"
-                width="500" height="300" />
-            <img src="https://cdn.discordapp.com/attachments/302274214902235138/1113920491061784646/20793AEC-880E-4D8D-AEE9-A80DC85688C3.jpg" class="slide"
-                width="500" height="300" />
-            <img src="https://cdn.discordapp.com/attachments/302274214902235138/1113920466063724664/6D6E85C1-BCAF-49BD-9906-0769BD9A0B80.jpg" class="slide"
-                width="500" height="300" />
-        </div>
-        <div class="buttons">
-            <a href="#slide-1"></a>
-            <a href="#slide-2"></a>
-            <a href="#slide-3"></a>
-        </div>
-    </div>  </td>
+        <td><img src="nasty_beep.jpg" width="500" height="300" /></td>
 
-        <td><h1> </h1>
-        <p> tiny words </p>
-        <h2> slightly smaller words</h2>
-    
-    <label for="idk">Choose something here:</label>
-    
-    <select name="idk" id="idk">
-        <option value="aa">aa</option>
-        <option value="aaa">aaa</option>
-        <option value="aaaa">aaaa</option>
-        <option value="aaaaa">aaaaa</option>
-    </select>
+        <td><img src="ugly_bear.jpg"
+             width="500" height="300" />
     
     </td>
     </tr>
 </table>
 </center>
-
-
-    
-
 
     <div class="card hidden" id='search-results-container'>
         <h3>Results for <span id="search-criteria-display"></span></h3>

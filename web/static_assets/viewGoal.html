@@ -1,110 +1,86 @@
-<!DOCTYPE html>
 <html>
 
-<title>View Goal By ID</title>
 <head>
-    <script type="text/javascript" src="assets/viewGoal.js"></script>
+    <title>View All Goals</title>
+    <script src="assets/viewGoal.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #a2a4f0;
-            overflow-x: hidden;
-            transition: 0.4s;
-            padding-top: 60px;
-        }
-
-        .sidebar div {
-            padding: 8px 8px 8px 30px;
-            font-size: 24px;
-            display: block;
-            transition: 0.4s;
-            cursor: pointer;
-            font-family:fantasy
-        }
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-        }
-
-        .openbtn {
-            font-size: 24px;
-            cursor: pointer;
-            background-color: #a2a4f0;
-            border-style: solid;
-        }
-
-        #main {
-            transition: margin-left .5s;
-        }
-
-    </style>
+    <meta charset="UTF-8">
 </head>
-
-<header class="header" id="header">
-    <a href="index.html">
-        <img src="beefers.png" alt="beef logo placeholder" style="width:150px;height:150px;">
-    </a>
-</header>
-
 
 <body class="background">
 
-    <div id="mySidebar" class="sidebar">
-        <div class="closebtn" onclick="closeNav()">×</div>
-        <div>About</div>
-        <div><a href="/index.html">Home</a></div>
-        <div>Sign in | Create Account</div>
-        <div>View Goals</div>
-        <div>Create Goals</div>
-        <div>Update Goals</div>
-        <div>Delete Goals</div>
-        <div>Search Goals</div>
+    <header class="header" id="header"></header>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Menu
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="createGoal.html">Create Goal</a>
+                <a href="viewAllGoals.html">View All Goals</a>
+                <a href="viewGoal.html">View Goal</a>
+                <a href="updateGoal.html">Update Goal</a>
+            </div>
+        </div>
     </div>
 
-    <div id="main">
+    
+   <div class="viewingGoal">
+<br>
+<br>
 
-        <button class="openbtn" onclick="openNav()">✿</button>
-
-    <center><h1> View Goal By ID: </h1></center>
-
-        <hr class="dotted">
-   
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <center>
-        <form class = "card-content" id="view-goal-form">
-        
-            <h2><label> <b>Enter Goal ID: </b></label></h2>
-
-            <input type="text" required class="validated-field" id="goal-id" placeholder="ex. 1237" autofocus> 
-
-        &nbsp;&nbsp;&nbsp;
-
-            <center> <a href="#" button class="button-bordered" id="submit"> Submit </center>
-                
-        </form>
+    <div class="creation" id="creation">
+        <div class="card">
+            <h1 style="color:#99b2dd">View Goal By ID:</h2>
+                <br>
+                <hr class="dashed">
+                <br>
+                <br>
+    
+                <form class="card-content" id="view-goal-form">
+                    <p class="hidden error" id="error-message"></p>
+    
+                    <div class="form-field">
+                        <label for="goal-id"><b>Goal ID:</b></label>
+                        <br>
+                        <input type="text" required class="validated-field" id="goal-id" placeholder="74zYZ" autofocus>
+                    </div>
+                        <br>
+                    <p>
+                        <hr style="border-top: dotted 1px;" />
+                        <br>
+    
+                    </p>
+    
+                    <a href="#" class="button" id="submit">View Goal</a>
+                </form>
+                <br>
         </div>
-        </center>
+
+   </div>
 
     <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
         }
 
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
         }
+
+
     </script>
 
 </body>

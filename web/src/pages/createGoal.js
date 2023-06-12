@@ -46,9 +46,9 @@ class CreateGoal extends BindingClass {
         const goalAmount = document.getElementById('goalAmount').value;
         const category = document.getElementById('category').value;
         const description = document.getElementById('description').value;
-        const prioirty = document.getElementById('priority').value;
+        const priority = document.getElementById('priority').value;
 
-        const goal = await this.client.createGoal(name, category, goalAmount, description, prioirty, (error) => {
+        const goal = await this.client.createGoal(name, category, goalAmount, description, priority, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');

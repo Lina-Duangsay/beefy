@@ -3,7 +3,7 @@
 
 <head>
     <title>Create Goal</title>
-    <script type="module" src="assets/createGoal.js"></script>
+    <script src="assets/createGoal.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
@@ -11,6 +11,22 @@
 <body>
     <header class="header" id="header">
     </header>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Menu
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="createGoal.html">Create Goal</a>
+                <a href="viewAllGoals.html">View All Goals</a>
+                <a href="viewGoal.html">View Goal</a>
+                <a href="updateGoal.html">Update Goal</a>
+            </div>
+        </div>
+    </div>
 
     <div class="creation" id="creation">
         <div class="card">
@@ -25,23 +41,27 @@
 
                 <div class="form-field">
                     <label for="goal-name"><b>Name</b></label>
+                    <br>
                     <input type="text" required class="validated-field" id="goal-name" placeholder="Shopping Spree"
                         autofocus>
                 </div>
 
                 <div class="form-field">
                     <label for="category"><b>Category</b></label>
+                    <br>
                     <input type="text" required class="validated-field" id="category" placeholder="Shopping" autofocus>
                 </div>
 
                 <div class="form-field">
                     <label for="goalAmount"><b>Amount</b></label>
+                    <br>
                     <input type="number" required class="validated-field" id="goalAmount" min="0" placeholder="500.00"
                         autofocus>
                 </div>
 
                 <div class="form-field">
                     <label for="priority"><b>Priority</b></label>
+                    <br>
                     <select name="priority" required class="validated-field" id="priority">
                         <option value="HIGH">HIGH</option>
                         <option value="LOW">LOW</option>
@@ -51,15 +71,18 @@
                 </div>
 
                 <div class="form-field">
+                
                     <label for="description"><b>Description</b></label>
+                    <br>
                     <textarea rows="5" cols="23" required class="validated-field" id="description"
                         placeholder="I really want to just spend some money for fun."></textarea>
                 </div>        
+                <br>
                 <p>
 
                     <hr style="border-top: dotted 1px;" />
                         
-                    <spacer></spacer>
+                    <br>
 
                     
                 </p>
@@ -68,6 +91,30 @@
             </form>
 
     </div>
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+
+
+    </script>
+
+
+
+
 </body>
 
 </html>

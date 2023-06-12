@@ -119,7 +119,7 @@ class ViewPlaylist extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const viewGoal = new ViewGoal();
+    const viewGoal = new ViewPlaylist();
     viewGoal.mount();
 };
 
