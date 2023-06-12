@@ -23,14 +23,15 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     viewGoal: path.resolve(__dirname, 'src', 'pages', 'viewGoal.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     createGoal: path.resolve(__dirname, 'src', 'pages', 'createGoal.js'),
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
-    viewAllGoals: path.resolve(__dirname, 'src', 'pages', 'allGoals.js'),
-    about: path.resolve(__dirname, 'src', 'pages', 'about.js')
+    viewAllGoals: path.resolve(__dirname, 'src', 'pages', 'viewAllGoals.js'),
+    about: path.resolve(__dirname, 'src', 'pages', 'about.js'),
+    userDashboard: path.resolve(__dirname, 'src', 'pages', 'userDashboard.js')
+
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

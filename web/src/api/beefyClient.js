@@ -117,6 +117,32 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
+
+    /**
+    get all order data for order table
+    */
+
+    async viewAllGoals() {
+        try {
+            const response = await this.axiosClient.get(`/goals/`);
+            const goals = response.data.goals.map(goal => {
+                const { id: goalId, name, category, goalAmount, description, priority } = order;
+                return {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority
+                };
+            });
+            return goals;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+
     // /**
     //  * Get the songs on a given playlist by the playlist's identifier.
     //  * @param id Unique identifier for a playlist

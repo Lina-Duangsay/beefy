@@ -5,24 +5,24 @@ export default class Table extends BindingClass {
     constructor() {
         super();
 
-        const methodsToBind = ['addTableToPage', 'buildTable'];
-        this.bindClassMethods(methodsToBind, this);
+        this.bindClassMethods(['addTableToPage', 'buildTable'], this);
         this.client = new BeefyClient();
+        this.addTableToPage();
     }
 
     async addTableToPage() {
         console.log('Table.js should be building...');
         const currentUser = await this.client.getIdentity();
-        const data = await this.client.getData();
-        const table = this.buildTable(data);
+        const goals = await this.client.viewAllGoals(); // Call the viewAllGoals method
+        const table = this.buildTable(goals); // Pass the array of goals to the buildTable method
         const container = document.getElementById('table-container');
         table.classList.add('table-container');
         container.appendChild(table);
     }
 
-    buildTable(data) {
-        if (!Array.isArray(data)) {
-            console.error('Error: data is not an array!');
+    buildTable(goals) {
+        if (!Array.isArray(goals)) {
+            console.error('Error: goals is not an array!');
             return;
         }
         const table = document.createElement('table');
@@ -38,10 +38,10 @@ export default class Table extends BindingClass {
         });
 
         // Create the table body rows
-        data.forEach(item => {
+        goals.forEach(item => {
             const row = table.insertRow();
             row.classList.add('goal-row'); // Add a class to style the row
-            const cells = [item.goalId, item.goalName, item.category, item.priority, item.completionStatus, item.description, item.userId];
+            const cells = [item.goalId, item.name, item.goalAmount, item.category, item.priority, item.completionStatus, item.description];
             cells.forEach(cell => {
                 const td = document.createElement('td');
                 td.innerText = cell;
@@ -51,5 +51,4 @@ export default class Table extends BindingClass {
 
         return table;
     }
-
 }

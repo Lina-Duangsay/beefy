@@ -16,23 +16,24 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view table page of the website.
  */
-class AllGoals extends BindingClass {
+class ViewAllGoals extends BindingClass {
     constructor() {
         super();
 
         this.bindClassMethods(['mount'], this);
 
-        // Create a enw datastore with an initial "empty" state.
+        // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
+        this.header = new Header();
     }
 
     /**
-     * Add the table to the page and load the MusicPlaylistClient.
+     * Add the table to the page and load the BeefyClient.
      */
     mount() {
-        console.log('AllGoals.js mounting...');
+        console.log('ViewAllGoals.js mounting...');
         this.table.addTableToPage();
         this.client = new BeefyClient();
         this.header.addHeaderToPage();
@@ -40,8 +41,8 @@ class AllGoals extends BindingClass {
 }
 
 const main = async () => {
-    const inventory = new AllGoals();
-    AllGoals.mount();
+    const viewAllGoals = new ViewAllGoals();
+    viewAllGoals.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
