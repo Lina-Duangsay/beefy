@@ -1,54 +1,56 @@
-import BeefyClient from "../api/beefyClient";
-import BindingClass from "../util/bindingClass";
+import BeefyClient from '../api/beefyClient';
+import BindingClass from '../util/bindingClass';
 
 export default class Table extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['addTableToPage', 'buildTable'], this);
+        const methodsToBind = ['fetchData', 'displayTable'];
+        this.bindClassMethods(methodsToBind, this);
+
         this.client = new BeefyClient();
-        this.addTableToPage();
+        this.data = [];
     }
 
-    async addTableToPage() {
-        console.log('Table.js building...');
-        const currentUser = await this.client.getIdentity();
-        const data = await this.client.getData();
-        const table = this.buildTable(data);
-        const container = document.getElementById('table-container');
-        table.classList.add('table-container'); 
-        container.appendChild(table);
-    }
+    async fetchData() {
+        try {
+            const response = await this.client.fetchData(); // Replace with your method to fetch data from DynamoDB
 
-    buildTable(data) {
-        if (!Array.isArray(data)) {
-            console.error('Error: data is not an array!');
-            return;
+            this.data = response.data.Items; // Assuming the response contains an array of items
+            this.displayTable();
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
+    }
+
+    displayTable() {
         const table = document.createElement('table');
-        table.classList.add('table-container'); 
+        table.classList.add('table-container'); // Add a class to style the table
 
         // Create the table header row
-        const headerRow = table.insertRow();
+        const headerRow = document.createElement('tr');
         const headers = ['Goal ID', 'Name', 'Amount', 'Category', 'Priority', 'Completion Status', 'Description'];
         headers.forEach(header => {
             const th = document.createElement('th');
             th.innerText = header;
             headerRow.appendChild(th);
         });
+        table.appendChild(headerRow);
 
         // Create the table body rows
-        data.forEach(item => {
-            const row = table.insertRow();
+        this.data.forEach(item => {
+            const row = document.createElement('tr');
             row.classList.add('goal-row'); // Add a class to style the row
-            const cells = [item.goalId, item.name, item.goalAmount, item.category, item.priority, item.completionStatus, item.description];
-            cells.forEach(cell => {
-                const td = document.createElement('td');
-                td.innerText = cell;
-                row.appendChild(td);
+
+            headers.forEach(header => {
+                const cell = document.createElement('td');
+                cell.innerText = item[header] || ''; // Assuming the item object has properties matching the headers
+                row.appendChild(cell);
             });
+
+            table.appendChild(row);
         });
 
-        return table;
+        document.body.appendChild(table);
     }
 }

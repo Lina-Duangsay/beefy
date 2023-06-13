@@ -1,17 +1,18 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title> Find A Goal</title>
-    <script type="text/javascript" src="assets/home.js"></script>
+    <title>View Goals</title>
     <script src="assets/viewGoal.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
-<header class="header" id="header">
-</header>
+
+
 
 <body class="background">
+
+    <header class="header" id="header"></header>
+
     <div class="navbar">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -27,24 +28,43 @@
             </div>
         </div>
     </div>
-    <div class="creation" id="creation">
-        <div class="card">
-            <h1 style="color:#99b2dd">Find a Goal</h1>
-            <br>
-            <hr class="dashed">
 
-            <div id="table-container"></div>
-            <br>
 
-            <div class="button-container">
-                <a href="getGoalByName.html" class="cryingButton">By Name</a>
-                <a href="getGoalByCategory.html" class="cryingButton">By Category</a>
-                <a href="getGoalByPriority.html" class="cryingButton">By Priority</a>
-                <a href="getGoalById.html" class="cryingButton">By ID</a>
+
+    <div class="viewingGoal">
+        <br>
+        <br>
+
+        <div class="creation" id="creation">
+            <div class="card">
+                <h1 style="color:#99b2dd">View Goal By ID:</h2>
+                    <br>
+                    <hr class="dashed">
+                    <br>
+                    <br>
+
+                    <form class="card-content" id="view-goal-form">
+                        <p class="hidden error" id="error-message"></p>
+
+                        <div class="form-field">
+                            <label for="goal-id"><b>Goal ID:</b></label>
+                            <br>
+                            <input type="text" required class="validated-field" id="goal-id" placeholder="74zYZ"
+                                autofocus>
+                        </div>
+                        <br>
+                        <p>
+                            <hr style="border-top: dotted 1px;" />
+                            <br>
+
+                        </p>
+
+                        <button href="#" class="button" id="submit">View Goal</a>
+                    </form>
+                    <br>
             </div>
-
         </div>
-        </p>
+
 
         <script>
             /* When the user clicks on the button, 
@@ -62,9 +82,8 @@
                     }
                 }
             }
-
-
         </script>
+
 
 </body>
 

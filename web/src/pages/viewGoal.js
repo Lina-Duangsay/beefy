@@ -36,7 +36,7 @@ class ViewGoal extends BindingClass {
 
         document.getElementById('submit').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
-
+        submission.addEventListener("click", this.clientLoaded);
         this.client = new BeefyClient();
         this.clientLoaded();
     }

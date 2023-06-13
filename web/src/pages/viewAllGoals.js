@@ -25,6 +25,7 @@ class ViewAllGoals extends BindingClass {
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
+        this.header = new Header();
     }
 
     /**
@@ -36,11 +37,21 @@ class ViewAllGoals extends BindingClass {
         this.client = new BeefyClient();
         this.header.addHeaderToPage();
     }
+
+
+    async displayTable() {
+        await this.table.fetchData();
+    }
+
+
+
 }
 
 const main = async () => {
     const viewAllGoals = new ViewAllGoals();
+    await viewAllGoals.displayTable();
     viewAllGoals.mount();
+   
 };
 
 window.addEventListener('DOMContentLoaded', main);
