@@ -286,6 +286,26 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  GetAllGoalsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: com.nashss.se.beefy.lambda.GetAllGoalsLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        BeefyService:
+          Type: Api
+          Properties:
+            Path: /goals/getAllGoals
+            Method: get
+
   CreateGoalLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -506,6 +526,8 @@ Resources:
           AttributeType: "S"
         - AttributeName: "goalName"
           AttributeType: "S"
+        - AttributeName: "userId"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "goalId"
           KeyType: "HASH"
@@ -521,6 +543,12 @@ Resources:
         - IndexName: "GoalsByNameIndex"
           KeySchema:
             - AttributeName: "goalName"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+        - IndexName: "AllGoalsUserIdIndex"
+          KeySchema:
+            - AttributeName: "userId"
               KeyType: "HASH"
           Projection:
             ProjectionType: "ALL"

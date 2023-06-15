@@ -49,4 +49,6 @@ public interface ServiceComponent {
     UpdateCompletionStatusActivity provideUpdateCompletionStatusActivity();
 
     UpdatePriorityActivity provideUpdatePriorityActivity();
+
+    GetAllGoalsActivity provideGetAllGoalsActivity();
 }

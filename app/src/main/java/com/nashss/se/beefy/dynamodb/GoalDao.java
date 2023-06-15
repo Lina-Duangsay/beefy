@@ -17,8 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nashss.se.beefy.dynamodb.models.Goal.GOALS_BY_CATEGORY_INDEX;
-import static com.nashss.se.beefy.dynamodb.models.Goal.GOALS_BY_NAME_INDEX;
+import static com.nashss.se.beefy.dynamodb.models.Goal.*;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_GOALNOTFOUND_COUNT;
 import static com.nashss.se.beefy.metrics.MetricsConstants.GETGOAL_USERNOTFOUND_COUNT;
 
@@ -118,6 +117,19 @@ public class GoalDao {
                 .withIndexName(GOALS_BY_NAME_INDEX)
                 .withConsistentRead(false)
                 .withKeyConditionExpression("goalName = :goalName")
+                .withExpressionAttributeValues(valueMap);
+
+        return mapper.query(Goal.class, queryExpression);
+    }
+
+    public List<Goal> getGoalByUserId(String userId) {
+        DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":userId", new AttributeValue().withS(userId));
+        DynamoDBQueryExpression<Goal> queryExpression = new DynamoDBQueryExpression<Goal>()
+                .withIndexName(ALL_GOALS_USERID_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("userId = :userId")
                 .withExpressionAttributeValues(valueMap);
 
         return mapper.query(Goal.class, queryExpression);

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Update Goal</title>
+    <script type="text/javascript" src="assets/home.js"></script>
+    <script src="assets/updateGoalPriority.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+</head>
+
+
+<body class="background">
+    <header class="header" id="header">
+    </header>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Menu
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="createGoal.html">Create Goal</a>
+                <a href="viewAllGoals.html">View All Goals</a>
+                <a href="viewGoal.html">View Goal</a>
+                <a href="updateGoal.html">Update Goal</a>
+            </div>
+        </div>
+    </div>
+    <div class="creation" id="creation">
+    <div class="card">
+        <h1 style="color:#99b2dd">Update Goal</h1>
+        <br>
+        <hr class="dashed">
+        
+        <div id="table-container"></div>
+        <br>
+
+    <div class="button-container">
+        <a href="updateGoalAmount.html" class="cryingButton">Update Amount</a>
+        <a href="updateGoalDescription.html" class="cryingButton">Update Description</a>
+        <a href="updateGoalPriority.html" class="cryingButton">Update Priority</a>
+        <a href="deleteGoal.html" class="cryingButton">Delete Goal</a>
+    </div>
+
+    </div>
+    </p>
+    
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
+
+
+</script>
+    
+</body>
+
+</html>

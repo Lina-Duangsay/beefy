@@ -1,5 +1,4 @@
 import BeefyClient from '../api/beefyClient';
-import MusicPlaylistClient from '../api/beefyClient';
 import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -8,23 +7,29 @@ import DataStore from '../util/DataStore';
  * Logic needed for the create goal page of the website.
  */
 class UserDashboard extends BindingClass {
+    constructor() {
+        super();
+        this.bindClassMethods(['mount',], this);
+        this.header = new Header();
+    }
 
-constructor() {
-    super();
-    this.bindClassMethods(['mount', 'submit', 'redirectToViewGoal'], this);
-    this.dataStore = new DataStore();
-    this.dataStore.addChangeListener(this.redirectToViewGoal);
-    this.header = new Header(this.dataStore);
+    /**
+     * Add the header to the page and load the BeefyClient.
+     */
+    mount() {
+        console.log("made to mount");
+        this.client = new BeefyClient();
+        this.header.addHeaderToPage();
+    }
+
 }
 
 /**
- * Add the header to the page and load the BeefyClient.
+ * Main method to run when the page contents have loaded.
  */
-mount() {
-    document.getElementById('create').addEventListener('click', this.submit);
+const main = async () => {
+    const userDashboard = new UserDashboard();
+    userDashboard.mount();
+};
 
-    this.header.addHeaderToPage();
-
-    this.client = new BeefyClient();
-}
-}
+window.addEventListener('DOMContentLoaded', main);

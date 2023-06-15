@@ -11,7 +11,7 @@ export default class BeefyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getGoal', 'createGoal'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'getTokenOrThrow', 'logout', 'getGoal', 'getAllGoalData', 'createGoal', 'deleteGoal', 'updateGoalAmount', 'updateGoalDescription', 'updateGoalPriority'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -75,6 +75,25 @@ export default class BeefyClient extends BindingClass {
 
         return await this.authenticator.getUserToken();
     }
+    
+    /**
+     * Helper method to log the error and run any error functions.
+     * @param error The error received from the server.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     */
+    handleError(error, errorCallback) {
+        console.error(error);
+
+        const errorFromApi = error?.response?.data?.error_message;
+        if (errorFromApi) {
+            console.error(errorFromApi)
+            error.message = errorFromApi;
+        }
+
+        if (errorCallback) {
+            errorCallback(error);
+        }
+    }
 
     /**
      * Gets the Goal for the given ID.
@@ -84,13 +103,22 @@ export default class BeefyClient extends BindingClass {
      */
     async getGoal(goalId, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`goals/${goalId}`);
+            const token = await this.getTokenOrThrow("Only authenticated users can view goals.");
+            const response = await this.axiosClient.get(`goals/${goalId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                data: {
+                    goalId: goalId
+                }
+            });
             return response.data.goal;
         } catch (error) {
-            this.handleError(error, errorCallback)
+            this.handleError(error, errorCallback);
         }
     }
 
+    
     /**
      * Create a new goal owned by the current user.
      * @param name The name of the goal to create.
@@ -117,105 +145,128 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
-    // /**
-    //  * Get the songs on a given playlist by the playlist's identifier.
-    //  * @param id Unique identifier for a playlist
-    //  * @param errorCallback (Optional) A function to execute if the call fails.
-    //  * @returns The list of songs on a playlist.
-    //  */
-    // async getPlaylistSongs(id, errorCallback) {
-    //     try {
-    //         const response = await this.axiosClient.get(`playlists/${id}/songs`);
-    //         return response.data.songList;
-    //     } catch (error) {
-    //         this.handleError(error, errorCallback)
-    //     }
-    // }
-
-    // /**
-    //  * Create a new playlist owned by the current user.
-    //  * @param name The name of the playlist to create.
-    //  * @param tags Metadata tags to associate with a playlist.
-    //  * @param errorCallback (Optional) A function to execute if the call fails.
-    //  * @returns The playlist that has been created.
-    //  */
-    // async createPlaylist(name, tags, errorCallback) {
-    //     try {
-    //         const token = await this.getTokenOrThrow("Only authenticated users can create playlists.");
-    //         const response = await this.axiosClient.post(`playlists`, {
-    //             name: name,
-    //             tags: tags
-    //         }, {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         });
-    //         return response.data.playlist;
-    //     } catch (error) {
-    //         this.handleError(error, errorCallback)
-    //     }
-    // }
-
-    // /**
-    //  * Add a song to a playlist.
-    //  * @param id The id of the playlist to add a song to.
-    //  * @param asin The asin that uniquely identifies the album.
-    //  * @param trackNumber The track number of the song on the album.
-    //  * @returns The list of songs on a playlist.
-    //  */
-    // async addSongToPlaylist(id, asin, trackNumber, errorCallback) {
-    //     try {
-    //         const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
-    //         const response = await this.axiosClient.post(`playlists/${id}/songs`, {
-    //             id: id,
-    //             asin: asin,
-    //             trackNumber: trackNumber
-    //         }, {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         });
-    //         return response.data.songList;
-    //     } catch (error) {
-    //         this.handleError(error, errorCallback)
-    //     }
-    // }
-
-    // /**
-    //  * Search for a soong.
-    //  * @param criteria A string containing search criteria to pass to the API.
-    //  * @returns The playlists that match the search criteria.
-    //  */
-    // async search(criteria, errorCallback) {
-    //     try {
-    //         const queryParams = new URLSearchParams({ q: criteria })
-    //         const queryString = queryParams.toString();
-
-    //         const response = await this.axiosClient.get(`playlists/search?${queryString}`);
-
-    //         return response.data.playlists;
-    //     } catch (error) {
-    //         this.handleError(error, errorCallback)
-    //     }
-
-    // }
-
-    /**
-     * Helper method to log the error and run any error functions.
-     * @param error The error received from the server.
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     */
-    handleError(error, errorCallback) {
-        console.error(error);
-
-        const errorFromApi = error?.response?.data?.error_message;
-        if (errorFromApi) {
-            console.error(errorFromApi)
-            error.message = errorFromApi;
-        }
-
-        if (errorCallback) {
-            errorCallback(error);
+    async updateGoalAmount(goalId, amount, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updateAmount/${goalId}`, {
+                goalId: goalId,
+                amount: amount
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
         }
     }
+
+    async updateGoalDescription(goalId, description, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updateDescription/${goalId}`, {
+                goalId: goalId,
+                description: description
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async updateGoalPriority(goalId, priority, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updatePriority/${goalId}`, {
+                goalId: goalId,
+                priority: priority
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    
+    async deleteGoal(goalId, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.delete(`goals/deleteGoal/${goalId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    goalId: goalId
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+
+    async getAllGoalData() {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.get('/goals/getAllGoals/', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log('Response:', response); // Check the response received
+
+            if (!response.data || !Array.isArray(response.data.goalModel)) {
+                console.error('Error: Invalid goal data');
+                return [];
+            }
+
+            const goalModel = response.data.goalModel;
+            const goals = goalModel.map((goal) => {
+                const {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                } = goal;
+
+                return {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                };
+            });
+
+            console.log('Goals:', goals); // Check if goals are correctly extracted
+
+            return goals;
+        } catch (error) {
+            console.error('Error: Unable to get goal data:', error);
+            return [];
+        }
+    }
+
+
+
 }

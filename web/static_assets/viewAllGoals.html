@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <title>View All Goals</title>
+  <script src="assets/viewAllGoals.js"></script>
+  <script type="component" src="table.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="UTF-8">
+</head>
+
+<body class="background">
+  <header class="header" id="header"></header>
+
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">Menu
+        <i class="drop"></i>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="createGoal.html">Create Goal</a>
+        <a href="viewAllGoals.html">View All Goals</a>
+        <a href="viewGoal.html">View Goal</a>
+        <a href="updateGoal.html">Update Goal</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="cardington">
+
+    <h1 style="color: #ffb0a6;">Goals</h1>
+    <hr class="dashed">
+    <br>
+    <h4>Currently viewing all of your created goals!</h4>
+
+    <br>
+
+    <div id="allgoal-table-container"></div>
+
+    <p class="button-group">
+    </p>
+
+  </div>
+
+  <script>
+
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+      if (!e.target.matches('.dropbtn')) {
+        var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
+
+
+  </script>
+
+</body>
+
+
+
+</html>

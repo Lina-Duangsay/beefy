@@ -1,13 +1,13 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>View All Goals</title>
-    <script src="assets/viewAllGoals.js"></script>
-    <script type="component" src="table.js"></script>
+    <title>View Goals</title>
+    <script src="assets/viewGoal.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
+
+
 
 <body class="background">
 
@@ -29,6 +29,8 @@
         </div>
     </div>
 
+
+
     <div class="viewingGoal">
         <br>
         <br>
@@ -45,25 +47,43 @@
                         <p class="hidden error" id="error-message"></p>
 
                         <div class="form-field">
-                            <label for="goalId"><b>Goal ID:</b></label>
-                            <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ"
+                            <label for="goal-id"><b>Goal ID:</b></label>
+                            <br>
+                            <input type="text" required class="validated-field" id="goal-id" placeholder="74zYZ"
                                 autofocus>
                         </div>
-
+                        <br>
                         <p>
                             <hr style="border-top: dotted 1px;" />
                             <br>
 
                         </p>
 
-                        <a href="#" class="button" id="view">View Goal</a>
+                        <button href="#" class="button" id="submit">View Goal</a>
                     </form>
                     <br>
             </div>
-
-
-
         </div>
+
+
+        <script>
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            }
+        </script>
+
 
 </body>
 

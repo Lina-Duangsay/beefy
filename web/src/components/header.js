@@ -37,10 +37,10 @@ export default class Header extends BindingClass {
         homeButton.href = 'index.html';
 
         const img = document.createElement('img');
-        img.src = 'beefers.png';
+        img.src = 'beef_by_trin_copy.png';
         img.alt = 'beefy';
-        img.style.width = '150px';
-        img.style.height = '150px';
+        img.style.width = '350px';
+        img.style.height = '160px';
         homeButton.appendChild(img);
 
         const siteTitle = document.createElement('div');
@@ -98,9 +98,6 @@ export default class Header extends BindingClass {
         return this.createButton('Login', this.client.login);
     }
 
-    createViewGoalButton() {
-        return this.createButton('View Goal', this.client.viewGoal);
-    }
 
     createLogoutButton(currentUser) {
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
