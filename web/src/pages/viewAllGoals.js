@@ -4,14 +4,12 @@ import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 import Table from '../components/table';
 
-
 const SEARCH_CRITERIA_KEY = 'search-criteria';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
     [SEARCH_CRITERIA_KEY]: '',
     [SEARCH_RESULTS_KEY]: [],
 };
-
 
 /**
  * Logic needed for the view table page of the website.
@@ -25,33 +23,29 @@ class ViewAllGoals extends BindingClass {
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        this.header = new Header();
+        this.header = new Header(this.dataStore);
+        this.client = new BeefyClient();
     }
 
     /**
      * Add the table to the page and load the BeefyClient.
      */
-    mount() {
+    async mount() {
         console.log('ViewAllGoals.js mounting...');
         this.table.addTableToPage();
-        this.client = new BeefyClient();
         this.header.addHeaderToPage();
+
+        const token = await this.getTokenFromLocalStorage();
     }
 
-
-    async displayTable() {
-        await this.table.fetchData();
+    async getTokenFromLocalStorage() {
+        return localStorage.getItem('token');
     }
-
-
-
 }
 
 const main = async () => {
     const viewAllGoals = new ViewAllGoals();
-    await viewAllGoals.displayTable();
     viewAllGoals.mount();
-   
 };
 
 window.addEventListener('DOMContentLoaded', main);

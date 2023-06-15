@@ -11,7 +11,7 @@ export default class BeefyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'viewAllGoals', 'createGoal'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'getTokenOrThrow', 'logout', 'getGoal', 'getAllGoalData', 'createGoal', 'deleteGoal', 'updateGoalAmount', 'updateGoalDescription', 'updateGoalPriority'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -74,6 +74,25 @@ export default class BeefyClient extends BindingClass {
         }
 
         return await this.authenticator.getUserToken();
+    }
+    
+    /**
+     * Helper method to log the error and run any error functions.
+     * @param error The error received from the server.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     */
+    handleError(error, errorCallback) {
+        console.error(error);
+
+        const errorFromApi = error?.response?.data?.error_message;
+        if (errorFromApi) {
+            console.error(errorFromApi)
+            error.message = errorFromApi;
+        }
+
+        if (errorCallback) {
+            errorCallback(error);
+        }
     }
 
     /**
@@ -196,28 +215,37 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
-    async getUsersGoals(errorCallBack) {
-        try {
-            const token = await this.getTokenOrThrow("You must be logged in to view your goals.");
-            const response = await this.axiosClient.get(`goals/getAllGoals/`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            return Array.from(response.data);
-        } catch (error) {
-            this.handleError(error, errorCallBack);
-        }
-    }
 
-    /**
-    get all goal data for goal table
-      */
     async getAllGoalData() {
         try {
-            const response = await this.axiosClient.get(`/goals/`);
-            const orders = response.data.orders.map(order => {
-                const { id: goalId, name, category, goalAmount, description, priority, completionStatus } = goal;
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.get('/goals/getAllGoals/', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log('Response:', response); // Check the response received
+
+            if (!response.data || !Array.isArray(response.data.goalModel)) {
+                console.error('Error: Invalid goal data');
+                return [];
+            }
+
+            const goalModel = response.data.goalModel;
+            const goals = goalModel.map((goal) => {
+                const {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                } = goal;
+
                 return {
                     goalId,
                     name,
@@ -225,32 +253,20 @@ export default class BeefyClient extends BindingClass {
                     goalAmount,
                     description,
                     priority,
-                    completionStatus
+                    completionStatus,
+                    userId,
                 };
             });
+
+            console.log('Goals:', goals); // Check if goals are correctly extracted
+
             return goals;
         } catch (error) {
-            this.handleError(error, errorCallback);
+            console.error('Error: Unable to get goal data:', error);
+            return [];
         }
     }
 
 
-    /**
-     * Helper method to log the error and run any error functions.
-     * @param error The error received from the server.
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     */
-    handleError(error, errorCallback) {
-        console.error(error);
 
-        const errorFromApi = error?.response?.data?.error_message;
-        if (errorFromApi) {
-            console.error(errorFromApi)
-            error.message = errorFromApi;
-        }
-
-        if (errorCallback) {
-            errorCallback(error);
-        }
-    }
 }

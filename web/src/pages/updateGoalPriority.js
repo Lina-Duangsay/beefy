@@ -11,12 +11,14 @@ class UpdateGoalPriority extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount','updateGoalPriority'], this);
+        this.bindClassMethods(['mount','updateGoalPriority', 'update'], this);
 
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.displaySearchResults);
         this.client = new BeefyClient();
+        this.table = new Table(this.dataStore);
+        this.header = new Header(this.dataStore);
     }
 
     /**
@@ -24,16 +26,16 @@ class UpdateGoalPriority extends BindingClass {
          */
     mount() {
         console.log('UpdateGoalPriority.js mounting...');
+        this.table.addTableToPage();
         var updateButton = document.getElementById("update");
         updateButton.addEventListener("click", this.updateGoalPriority);
-        this.header.addHeaderToPage();
-
-    }
+        
+       }
 
     /**
-* Method to run when the update goal update button is pressed. Call the BeefyClient to create the
-* playlist.
-*/
+    * Method to run when the update goal update button is pressed. Call the BeefyClient to create the
+    * playlist.
+    */
     async update(evt) {
         evt.preventDefault();
 

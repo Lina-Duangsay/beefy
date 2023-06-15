@@ -11,12 +11,14 @@ class UpdateGoalDescription extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'updateGoalDescription'], this);
+        this.bindClassMethods(['mount', 'updateGoalDescription', 'update'], this);
 
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.displaySearchResults);
         this.client = new BeefyClient();
+        this.table = new Table(this.dataStore);
+        this.header = new Header(this.dataStore);
     }
 
     /**
@@ -24,9 +26,10 @@ class UpdateGoalDescription extends BindingClass {
          */
     mount() {
         console.log('UpdateGoalDescription.js mounting...');
+        this.table.addTableToPage();
         var updateButton = document.getElementById("update");
         updateButton.addEventListener("click", this.updateGoalDescription);
-        this.header.addHeaderToPage();
+        
 
     }
 

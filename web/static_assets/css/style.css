@@ -122,6 +122,24 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CS
 
 /* table styles */ 
 
+.table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.table-container th {
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem;
+}
+
+.table-container td {
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem;
+}
+
 th, td {
     padding: 15px;
     text-align: left;
@@ -284,14 +302,21 @@ span {
     background-color: rgb(153, 144, 238);
 }
 
+.creationleft {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 .creation {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
 .cardington {
-    width: 400px;
+    width: flex;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
@@ -330,6 +355,13 @@ span {
 
 .form-field label {
     color: #99b2dd;
+}
+
+.sidethingy {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: flex;
 }
 
 /* .button {

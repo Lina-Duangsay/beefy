@@ -20,9 +20,8 @@ class CreateGoal extends BindingClass {
      * Add the header to the page and load the BeefyClient.
      */
     mount() {
-        document.getElementById('create').addEventListener('click', this.submit);
-
         this.header.addHeaderToPage();
+        document.getElementById('create').addEventListener('click', this.submit);
 
         this.client = new BeefyClient();
     }

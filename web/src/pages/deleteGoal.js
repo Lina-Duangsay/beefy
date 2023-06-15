@@ -11,11 +11,12 @@ class DeleteGoal extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'deleteGoal'], this);
+        this.bindClassMethods(['mount', 'deleteGoal', 'delete'], this);
 
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
-    
+        this.table = new Table(this.dataStore);
+        this.header = new Header(this.dataStore);
     }
 
     /**
@@ -23,9 +24,9 @@ class DeleteGoal extends BindingClass {
          */
     mount() {
         console.log('deleteGoal.js mounting...');
+        this.table.addTableToPage();
         var deleteButton = document.getElementById("delete");
         deleteButton.addEventListener("click", (event) => this.deleteGoal(event));
-
         this.client = new BeefyClient();
 }
 
