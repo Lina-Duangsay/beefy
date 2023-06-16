@@ -122,6 +122,24 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CS
 
 /* table styles */ 
 
+.priority-table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.category-table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.name-table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
+
 .table-container {
     border-collapse: collapse;
     width: 100%;
@@ -233,6 +251,30 @@ span {
     margin-top: 20px;
 }
 
+.update-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.updatingButton {
+    display: block;
+    width: 200px;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #d4b2d8;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.updatingButton:hover {
+    background-color: #8a5f8d;
+}
+
 .backButton,
 .resumeButton {
     display: inline-block;
@@ -314,6 +356,13 @@ span {
     align-items: center;
 }
 
+.update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
 
 .cardington {
     width: flex;
@@ -324,11 +373,28 @@ span {
 }
 
 .card {
+    height: 443px;
     width: 400px;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cardward {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidethingy {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: flex;
+    height: 443px;
 }
 
 .card-content {
@@ -357,12 +423,7 @@ span {
     color: #99b2dd;
 }
 
-.sidethingy {
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    width: flex;
-}
+
 
 /* .button {
     display: block;

@@ -15,7 +15,6 @@ class UpdateGoalDescription extends BindingClass {
 
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.displaySearchResults);
         this.client = new BeefyClient();
         this.table = new Table(this.dataStore);
         this.header = new Header(this.dataStore);
@@ -72,6 +71,7 @@ class UpdateGoalDescription extends BindingClass {
         try {
             const updateRequest = await this.client.updateGoalDescription(goalId, description);
             alert('Item updated successfully!');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             alert('Error updating item. See console for details.');
