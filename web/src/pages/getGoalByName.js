@@ -21,7 +21,7 @@ class GetGoalByName extends BindingClass {
             form.addEventListener('submit', this.getGoalByName.bind(this));
         }
 
-        this.header.addHeaderToPage();
+        // this.header.addHeaderToPage();
         this.client = new BeefyClient();
     }
 

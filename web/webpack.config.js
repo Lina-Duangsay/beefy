@@ -36,8 +36,7 @@ module.exports = {
     deleteGoal: path.resolve(__dirname, 'src', 'pages', 'deleteGoal.js'),
     getGoalByCategory: path.resolve(__dirname, 'src', 'pages', 'getGoalByCategory.js'),
     getGoalById: path.resolve(__dirname, 'src', 'pages', 'getGoalById.js'),
-    getGoalByName: path.resolve(__dirname, 'src', 'pages', 'getGoalByName.js'),
-    getGoalByPriority: path.resolve(__dirname, 'src', 'pages', 'getGoalByPriority.js')
+    getGoalByName: path.resolve(__dirname, 'src', 'pages', 'getGoalByName.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

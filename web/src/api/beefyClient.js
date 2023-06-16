@@ -235,11 +235,16 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
-
-    async getGoalByPriority(priority) {
+    /**
+* Gets the Goal for the given ID.
+* @param name identifier for a goal
+* @param errorCallback (Optional) A function to execute if the call fails.
+* @returns The goal's metadata.
+*/
+    async getGoalById(goalId) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can retrieve goals.");
-            const response = await this.axiosClient.get(`/goals/priority/${priority}`, {
+            const response = await this.axiosClient.get(`/goals/${goalId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -248,44 +253,87 @@ export default class BeefyClient extends BindingClass {
 
             console.log('Response:', response); // Check the response received
 
-            if (!response.data || !Array.isArray(response.data.goalModel)) {
+            if (!response.data || typeof response.data.goalModel !== 'object') {
                 console.error('Error: Invalid goal data');
                 return [];
             }
 
             const goalModel = response.data.goalModel;
-            const goals = goalModel.map((goal) => {
-                const {
-                    goalId,
-                    name,
-                    category,
-                    goalAmount,
-                    description,
-                    priority,
-                    completionStatus,
-                    userId,
-                } = goal;
 
-                return {
-                    goalId,
-                    name,
-                    category,
-                    goalAmount,
-                    description,
-                    priority,
-                    completionStatus,
-                    userId,
-                };
-            });
+            const goal = {
+                goalId: goalModel.goalId,
+                name: goalModel.name,
+                category: goalModel.category,
+                goalAmount: goalModel.goalAmount,
+                description: goalModel.description,
+                priority: goalModel.priority,
+                completionStatus: goalModel.completionStatus,
+                userId: goalModel.userId,
+            };
 
-            console.log('Goals:', goals); // Check if goals are correctly extracted
+            console.log('Goal:', goal); // Check if the goal is correctly extracted
 
-            return goals;
+            return [goal]; // Wrap the goal in an array
         } catch (error) {
             console.error('Error: Unable to get goal data:', error);
             return [];
         }
     }
+
+
+
+
+
+    // async getGoalByPriority(priority) {
+    //     try {
+    //         const token = await this.getTokenOrThrow("Only authenticated users can retrieve goals.");
+    //         const response = await this.axiosClient.get(`/goals/priority/${priority}`, {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+
+    //         console.log('Response:', response); // Check the response received
+
+    //         if (!response.data || !Array.isArray(response.data.goalModel)) {
+    //             console.error('Error: Invalid goal data');
+    //             return [];
+    //         }
+
+    //         const goalModel = response.data.goalModel;
+    //         const goals = goalModel.map((goal) => {
+    //             const {
+    //                 goalId,
+    //                 name,
+    //                 category,
+    //                 goalAmount,
+    //                 description,
+    //                 priority,
+    //                 completionStatus,
+    //                 userId,
+    //             } = goal;
+
+    //             return {
+    //                 goalId,
+    //                 name,
+    //                 category,
+    //                 goalAmount,
+    //                 description,
+    //                 priority,
+    //                 completionStatus,
+    //                 userId,
+    //             };
+    //         });
+
+    //         console.log('Goals:', goals); // Check if goals are correctly extracted
+
+    //         return goals;
+    //     } catch (error) {
+    //         console.error('Error: Unable to get goal data:', error);
+    //         return [];
+    //     }
+    // }
 
     
     
