@@ -1,5 +1,4 @@
 import BeefyClient from '../api/beefyClient';
-import MusicPlaylistClient from '../api/beefyClient';
 import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -10,9 +9,8 @@ import DataStore from '../util/DataStore';
 class CreateGoal extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewGoal'], this);
+        this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewGoal);
         this.header = new Header(this.dataStore);
     }
 
@@ -22,7 +20,6 @@ class CreateGoal extends BindingClass {
     mount() {
         this.header.addHeaderToPage();
         document.getElementById('create').addEventListener('click', this.submit);
-
         this.client = new BeefyClient();
     }
 
@@ -47,23 +44,20 @@ class CreateGoal extends BindingClass {
         const description = document.getElementById('description').value;
         const priority = document.getElementById('priority').value;
 
-        const goal = await this.client.createGoal(name, category, goalAmount, description, priority, (error) => {
+        try {
+            const goal = await this.client.createGoal(name, category, goalAmount, description, priority);
+            this.dataStore.set('goal', goal);
+            alert('Goal created successfully! Visit your goals to view. ');
+            window.location.reload();
+
+        } catch (error) {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
-        });
-        this.dataStore.set('goal', goal);
-    }
-
-    /**
-     * When the goal is updated in the datastore, redirect to the view goal page.
-     */
-    redirectToViewGoal() {
-        const goal = this.dataStore.get('goal');
-        if (goal != null) {
-            window.location.href = `/goal/{goal.id}`;
         }
     }
+
+
 }
 
 /**

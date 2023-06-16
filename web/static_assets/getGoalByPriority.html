@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>View All Goals</title>
-    <script src="assets/getGoalById.js"></script>
-    <script type="component" src="table.js"></script>
+    <title>View Goal By Priority</title>
+    <script src="assets/home.js"></script>
+    <script src="assets/getGoalByPriority.js"></script>
+    <script type="component" src="priorityTable.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
@@ -33,62 +34,62 @@
         <br>
         <br>
 
+        <div id="priority-table-container"></div>
+
         <div class="creation" id="creation">
             <div class="card">
-                <h1 style="color:#99b2dd">View Goal By Priority:</h2>
-                    <br>
-                    <hr class="dashed">
-                    <br>
-                    <br>
-
-                    <form class="card-content" id="view-goal-form">
-                        <p class="hidden error" id="error-message"></p>
-
+                <h1 style="color:#99b2dd">View Goal By Priority:</h1>
+                <br>
+                <hr class="dashed">
+                <br>
+                <br>
+                <form class="card-content" id="view-goalpriority-form">
+                    <p class="hidden error" id="error-message"></p>
+                    <div class="form-field">
+                        <br>
                         <div class="form-field">
-                            <label for="priority"><b>Priority:</b></label>
+                            <label for="requestedPriority"><b>Priority</b></label>
                             <br>
-                            <select name="priority" required class="validated-field" id="priority">
+                            <select name="requestedPriority" required class="validated-field" id="requestedPriority">
                                 <option value="HIGH">HIGH</option>
                                 <option value="LOW">LOW</option>
                                 <option value="NORMAL">NORMAL</option>
                                 <option value="NONE">NONE</option>
                             </select>
                         </div>
-
-                        <p>
-                            <hr style="border-top: dotted 1px;" />
-                            <br>
-
-                        </p>
-
-                        <a href="#" class="button" id="view">View Goal</a>
-                    </form>
                     <br>
+                    <p>
+                        <hr style="border-top: dotted 1px;" />
+                        <br>
+                    </p>
+                    <button type="submit" class="button" id="submit">View Goal</button>
+                </form>
+                <br>
             </div>
-
-
-
         </div>
-<script>
+    </div>
 
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
+    <script>
+
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
             }
         }
-    }
 
 
-</script>
+    </script>
 </body>
 
 </html>

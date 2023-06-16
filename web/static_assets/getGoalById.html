@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>View All Goals</title>
+    <title>View Goal By ID</title>
+    <script src="assets/home.js"></script>
     <script src="assets/getGoalById.js"></script>
-    <script type="component" src="table.js"></script>
+    <script type="component" src="nameTable.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
@@ -33,57 +34,58 @@
         <br>
         <br>
 
+        <div id="goalId-table-container"></div>
+
         <div class="creation" id="creation">
             <div class="card">
-                <h1 style="color:#99b2dd">View Goal By ID:</h2>
+                <h1 style="color:#99b2dd">View Goal By ID:</h1>
+                <br>
+                <hr class="dashed">
+                <br>
+                <br>
+                <form class="card-content" id="view-goalId-form">
+                    <p class="hidden error" id="error-message"></p>
+                    <div class="form-field">
+                        <label for="requestedGoalId"><b>Goal ID:</b></label>
+                        <br>
+                        <p>Note: this must be a full match.</p>
+                        <br>
+                        <input type="text" required class="validated-field" id="requestedGoalId" placeholder="7s6zG"
+                            autofocus>
+                    </div>
                     <br>
-                    <hr class="dashed">
-                    <br>
-                    <br>
-
-                    <form class="card-content" id="view-goal-form">
-                        <p class="hidden error" id="error-message"></p>
-
-                        <div class="form-field">
-                            <label for="goalId"><b>Goal ID:</b></label>
-                            <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ"
-                                autofocus>
-                        </div>
-
-                        <p>
-                            <hr style="border-top: dotted 1px;" />
-                            <br>
-
-                        </p>
-
-                        <a href="#" class="button" id="view">View Goal</a>
-                    </form>
-                    <br>
+                    <p>
+                        <hr style="border-top: dotted 1px;" />
+                        <br>
+                    </p>
+                    <button type="submit" class="button" id="submit">View Goal</button>
+                </form>
+                <br>
             </div>
-
-
-
         </div>
-<script>
+    </div>
 
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
+    <script>
+
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
             }
         }
-    }
 
 
-</script>
+    </script>
 </body>
 
 </html>

@@ -70,6 +70,7 @@ class DeleteGoal extends BindingClass {
         try {
             const updateRequest = await this.client.deleteGoal(goalId);
             alert('Item deleted successfully!');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             alert('Error updating item. See console for details.');

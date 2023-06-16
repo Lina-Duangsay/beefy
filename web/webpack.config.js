@@ -28,16 +28,15 @@ module.exports = {
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
     viewAllGoals: path.resolve(__dirname, 'src', 'pages', 'viewAllGoals.js'),
     about: path.resolve(__dirname, 'src', 'pages', 'about.js'),
-    searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     userDashboard: path.resolve(__dirname, 'src', 'pages', 'userDashboard.js'),
     updateGoalPriority: path.resolve(__dirname, 'src', 'pages', 'updateGoalPriority.js'),
     updateGoalAmount: path.resolve(__dirname, 'src', 'pages', 'updateGoalAmount.js'),
     updateGoalDescription: path.resolve(__dirname, 'src', 'pages', 'updateGoalDescription.js'),
+    updateGoalStatus: path.resolve(__dirname, 'src', 'pages', 'updateGoalStatus.js'),
     deleteGoal: path.resolve(__dirname, 'src', 'pages', 'deleteGoal.js'),
     getGoalByCategory: path.resolve(__dirname, 'src', 'pages', 'getGoalByCategory.js'),
     getGoalById: path.resolve(__dirname, 'src', 'pages', 'getGoalById.js'),
-    getGoalByName: path.resolve(__dirname, 'src', 'pages', 'getGoalByName.js'),
-    getGoalByPriority: path.resolve(__dirname, 'src', 'pages', 'getGoalByPriority.js')
+    getGoalByName: path.resolve(__dirname, 'src', 'pages', 'getGoalByName.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

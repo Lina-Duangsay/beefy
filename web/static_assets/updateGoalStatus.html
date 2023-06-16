@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <title>Update Amount</title>
+    <title>Update Status</title>
     <script type="text/javascript" src="assets/home.js"></script>
-    <script src="assets/updateGoalDescription.js"></script>
+    <script src="assets/updateGoalStatus.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
 </head>
@@ -12,6 +12,7 @@
 </header>
 
 <body class="background">
+
     <div class="navbar">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -28,41 +29,45 @@
         </div>
     </div>
 
-        <div class="cardington">
-        
-            <h1 style="color: #ffb0a6;">Goals</h1>
-            <hr class="dashed">
-        
-            <br>
-        
-            <div id="allgoal-table-container"></div>
-        
-            <p class="button-group">
-            </p>
-        
-        </div>
+
+    <div class="cardington">
+
+        <h1 style="color: #ffb0a6;">Goals</h1>
+        <hr class="dashed">
+
+        <br>
+        <h4> Note that this page will only show incomplete goals! </h4>
+        <br>
+        <div id="allgoal-table-container"></div>
+
+        <p class="button-group">
+        </p>
+
+    </div>
 
 
     <div class="creationleft" id="creationleft">
         <div class="card">
-            <h1 style="color:#99b2dd">Update Description</h2>
+            <h1 style="color:#99b2dd">Update Status</h1>
+                
                 <br>
                 <hr class="dashed">
                 <br>
                 <br>
 
-                <form class="card-content" id="update-goal-description-form">
+                <form class="card-content" id="update-goal-status-form">
                     <p class="hidden error" id="error-message"></p>
 
                     <div class="form-field">
-                        <label for="goalId"><b>Goal ID:</b></label><br>
+                        <label for="goalId"><b>Goal ID:</b></label> <br>
                         <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ" autofocus>
                     </div>
 
                     <div class="form-field">
-                        <label for="description"><b>New Description:</b></label> <br>
-                        <textarea rows="5" cols="23" required class="validated-field" id="description"
-                            placeholder="I really want to just spend some money for fun."></textarea>
+                        <label for="status"><b>New Status:</b></label> <br>
+                        <select name="completionStatus" required class="validated-field" id="completionStatus">
+                            <option value="true">GOAL MET!</option>
+                        </select>
                     </div>
 
                     <p>

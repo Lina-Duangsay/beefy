@@ -11,7 +11,9 @@ export default class BeefyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'getTokenOrThrow', 'logout', 'getGoal', 'getAllGoalData', 'createGoal', 'deleteGoal', 'updateGoalAmount', 'updateGoalDescription', 'updateGoalPriority'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'getTokenOrThrow', 'logout', 'getGoal', 
+        'getAllGoalData', 'createGoal', 'deleteGoal', 'updateGoalAmount', 'updateGoalDescription', 'updateGoalStatus', 'updateGoalPriority',
+        'getGoalByCategory', 'getGoalByName'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -97,7 +99,7 @@ export default class BeefyClient extends BindingClass {
 
     /**
      * Gets the Goal for the given ID.
-     * @param goalId Unique identifier for a playlist
+     * @param goalId Unique identifier for a category
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The goal's metadata.
      */
@@ -118,6 +120,222 @@ export default class BeefyClient extends BindingClass {
         }
     }
 
+    /**
+    * Gets the Goal for the given ID.
+    * @param goalId Unique identifier for a category
+    * @param errorCallback (Optional) A function to execute if the call fails.
+    * @returns The goal's metadata.
+    */
+    async getGoalByCategory(category) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.get(`/goals/category/${category}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log('Response:', response); // Check the response received
+
+            if (!response.data || !Array.isArray(response.data.goalModel)) {
+                console.error('Error: Invalid goal data');
+                return [];
+            }
+
+            const goalModel = response.data.goalModel;
+            const goals = goalModel.map((goal) => {
+                const {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                } = goal;
+
+                return {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                };
+            });
+
+            console.log('Goals:', goals); // Check if goals are correctly extracted
+
+            return goals;
+        } catch (error) {
+            console.error('Error: Unable to get goal data:', error);
+            return [];
+        }
+    }
+
+
+    /**
+* Gets the Goal for the given ID.
+* @param name identifier for a goal
+* @param errorCallback (Optional) A function to execute if the call fails.
+* @returns The goal's metadata.
+*/
+    async getGoalByName(goalName) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can retrieve goals.");
+            const response = await this.axiosClient.get(`/goals/name/${goalName}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log('Response:', response); // Check the response received
+
+            if (!response.data || !Array.isArray(response.data.goalModel)) {
+                console.error('Error: Invalid goal data');
+                return [];
+            }
+
+            const goalModel = response.data.goalModel;
+            const goals = goalModel.map((goal) => {
+                const {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                } = goal;
+
+                return {
+                    goalId,
+                    name,
+                    category,
+                    goalAmount,
+                    description,
+                    priority,
+                    completionStatus,
+                    userId,
+                };
+            });
+
+            console.log('Goals:', goals); // Check if goals are correctly extracted
+
+            return goals;
+        } catch (error) {
+            console.error('Error: Unable to get goal data:', error);
+            return [];
+        }
+    }
+
+    /**
+* Gets the Goal for the given ID.
+* @param name identifier for a goal
+* @param errorCallback (Optional) A function to execute if the call fails.
+* @returns The goal's metadata.
+*/
+    async getGoalById(goalId) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can retrieve goals.");
+            const response = await this.axiosClient.get(`/goals/${goalId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            console.log('Response:', response); // Check the response received
+
+            if (!response.data || typeof response.data.goalModel !== 'object') {
+                console.error('Error: Invalid goal data');
+                return [];
+            }
+
+            const goalModel = response.data.goalModel;
+
+            const goal = {
+                goalId: goalModel.goalId,
+                name: goalModel.name,
+                category: goalModel.category,
+                goalAmount: goalModel.goalAmount,
+                description: goalModel.description,
+                priority: goalModel.priority,
+                completionStatus: goalModel.completionStatus,
+                userId: goalModel.userId,
+            };
+
+            console.log('Goal:', goal); // Check if the goal is correctly extracted
+
+            return [goal]; // Wrap the goal in an array
+        } catch (error) {
+            console.error('Error: Unable to get goal data:', error);
+            return [];
+        }
+    }
+
+
+
+
+
+    // async getGoalByPriority(priority) {
+    //     try {
+    //         const token = await this.getTokenOrThrow("Only authenticated users can retrieve goals.");
+    //         const response = await this.axiosClient.get(`/goals/priority/${priority}`, {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+
+    //         console.log('Response:', response); // Check the response received
+
+    //         if (!response.data || !Array.isArray(response.data.goalModel)) {
+    //             console.error('Error: Invalid goal data');
+    //             return [];
+    //         }
+
+    //         const goalModel = response.data.goalModel;
+    //         const goals = goalModel.map((goal) => {
+    //             const {
+    //                 goalId,
+    //                 name,
+    //                 category,
+    //                 goalAmount,
+    //                 description,
+    //                 priority,
+    //                 completionStatus,
+    //                 userId,
+    //             } = goal;
+
+    //             return {
+    //                 goalId,
+    //                 name,
+    //                 category,
+    //                 goalAmount,
+    //                 description,
+    //                 priority,
+    //                 completionStatus,
+    //                 userId,
+    //             };
+    //         });
+
+    //         console.log('Goals:', goals); // Check if goals are correctly extracted
+
+    //         return goals;
+    //     } catch (error) {
+    //         console.error('Error: Unable to get goal data:', error);
+    //         return [];
+    //     }
+    // }
+
+    
     
     /**
      * Create a new goal owned by the current user.
@@ -151,6 +369,23 @@ export default class BeefyClient extends BindingClass {
             const response = await this.axiosClient.put(`goals/updateAmount/${goalId}`, {
                 goalId: goalId,
                 amount: amount
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.goal;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async updateGoalStatus(goalId, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update goals.");
+            const response = await this.axiosClient.put(`goals/updateStatus/${goalId}`, {
+                goalId: goalId,
+                completionStatus: true
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
