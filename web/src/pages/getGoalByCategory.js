@@ -9,7 +9,7 @@ class GetGoalByCategory extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'getGoalByCategory'], this);
         this.dataStore = new DataStore();
-        this.header = new Header(this.dataStore);
+        // this.header = new Header(this.dataStore);
         this.categoryTable = new CategoryTable();
         console.log("getGoalByCategory constructor");
     }

@@ -9,7 +9,7 @@ class GetGoalByName extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'getGoalByName'], this);
         this.dataStore = new DataStore();
-        this.header = new Header(this.dataStore);
+        // this.header = new Header(this.dataStore);
         this.nameTable = new NameTable();
         console.log("getGoalByName constructor");
     }

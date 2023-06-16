@@ -1,17 +1,19 @@
 <html>
 
 <head>
-    <title>View Goals</title>
-    <script src="assets/viewGoal.js"></script>
+    <title>Delete Goal</title>
+    <script type="text/javascript" src="assets/home.js"></script>
+    <script src="assets/deleteGoal.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
+
+
 </head>
 
-
+<header class="header" id="header">
+</header>
 
 <body class="background">
-
-    <header class="header" id="header"></header>
 
     <div class="navbar">
         <a href="index.html">Home</a>
@@ -30,40 +32,29 @@
     </div>
 
 
+<div class="cardContainer">
+    <div class="navCardLeft">
+        <a href="updateGoalAmount.html" class="updatingButton">Update Amount</a>
+        <a href="updateGoalDescription.html" class="updatingButton">Update Description</a>
+        <a href="updateGoalPriority.html" class="updatingButton">Update Priority</a>
+        <a href="updateGoalStatus.html" class="updatingButton">Update Status</a>
+        <a href="deleteGoal.html" class="updatingButton">Delete Goal</a>
+    </div>
 
-    <div class="viewingGoal">
+    <div class="tableCardAligned">
+        <h1 style="color: #ffb0a6;">Goals</h1>
+        <hr class="dashed">
         <br>
-        <br>
+        <div id="allgoal-table-container"></div>
+        <p class="button-group"></p>
+        
+    </div>
 
-        <div class="creation" id="creation">
-            <div class="card">
-                <h1 style="color:#99b2dd">View Goal By ID:</h2>
-                    <br>
-                    <hr class="dashed">
-                    <br>
-                    <br>
+    
+</div>
 
-                    <form class="card-content" id="view-goal-form">
-                        <p class="hidden error" id="error-message"></p>
 
-                        <div class="form-field">
-                            <label for="goal-id"><b>Goal ID:</b></label>
-                            <br>
-                            <input type="text" required class="validated-field" id="goal-id" placeholder="74zYZ"
-                                autofocus>
-                        </div>
-                        <br>
-                        <p>
-                            <hr style="border-top: dotted 1px;" />
-                            <br>
 
-                        </p>
-
-                        <button href="#" class="button" id="submit">View Goal</a>
-                    </form>
-                    <br>
-            </div>
-        </div>
 
 
         <script>
@@ -82,8 +73,9 @@
                     }
                 }
             }
-        </script>
 
+
+        </script>
 
 </body>
 

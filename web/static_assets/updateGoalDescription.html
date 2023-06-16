@@ -11,105 +11,121 @@
 <header class="header" id="header">
 </header>
 
-<body class="background">
     <div class="navbar">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
+        <a href="createGoal.html">Create Goal</a>
+        <a href="viewAllGoals.html">View All Goals</a>
         <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Menu
+            <button class="dropbtn" onclick="toggleDropdown('findDropdown')">Find Goals
                 <i class="drop"></i>
             </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a href="createGoal.html">Create Goal</a>
-                <a href="viewAllGoals.html">View All Goals</a>
-                <a href="viewGoal.html">View Goal</a>
-                <a href="updateGoal.html">Update Goal</a>
+            <div class="dropdown-content" id="findDropdown">
+                <a href="getGoalByCategory.html">By Category</a>
+                <a href="getGoalById.html">By ID</a>
+                <a href="getGoalByName.html">By Name</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('updateDropdown')">Update Goal
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="updateDropdown">
+                <a href="updateGoalAmount.html">Update Amount</a>
+                <a href="updateGoalDescription.html">Update Description</a>
+                <a href="updateGoalPriority.html">Update Priority</a>
+                <a href="updateGoalStatus.html">Update Status</a>
             </div>
         </div>
     </div>
 
-        <div class="cardington">
-        
-            <h1 style="color: #ffb0a6;">Goals</h1>
-            <hr class="dashed">
-        
+    <div class="cardContainer">
+    
+        <div class="navCardLeft">
+            <a href="updateGoalAmount.html" class="updatingButton">Update Amount</a>
+            <a href="updateGoalDescription.html" class="updatingButton">Update Description</a>
+            <a href="updateGoalPriority.html" class="updatingButton">Update Priority</a>
+            <a href="updateGoalStatus.html" class="updatingButton">Update Status</a>
+            <a href="deleteGoal.html" class="updatingButton">Delete Goal</a>
+        </div>
+    
+        <div class="updateCard">
+            <h1 style="color:#99b2dd">Update Description</h1>
+    
             <br>
-        
-            <div id="allgoal-table-container"></div>
-        
-            <p class="button-group">
-            </p>
-        
-        </div>
-
-
-    <div class="creationleft" id="creationleft">
-        <div class="card">
-            <h1 style="color:#99b2dd">Update Description</h2>
-                <br>
-                <hr class="dashed">
-                <br>
-                <br>
-
-                <form class="card-content" id="update-goal-description-form">
-                    <p class="hidden error" id="error-message"></p>
-
-                    <div class="form-field">
-                        <label for="goalId"><b>Goal ID:</b></label><br>
-                        <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ" autofocus>
-                    </div>
-
-                    <div class="form-field">
-                        <label for="description"><b>New Description:</b></label> <br>
-                        <textarea rows="5" cols="23" required class="validated-field" id="description"
-                            placeholder="I really want to just spend some money for fun."></textarea>
-                    </div>
-
-                    <p>
-                        <hr style="border-top: dotted 1px;" />
-                        <br>
-
-                    </p>
-
-                    <a href="#" class="button" id="update">Update Goal</a>
-                </form>
-                <br>
-                <p class="button-group">
-                    <a href="updateGoal.html">Return to Update Menu</a>
-                    <a href="userDashboard.html">Return to Dashboard</a>
-                </p>
-        </div>
-
-        <div class="creationleft" id="creationleft">
-            <div class="card">
-                <div class="update-button-container">
-                    <a href="updateGoalAmount.html" class="updatingButton">Update Amount</a>
-                    <a href="updateGoalDescription.html" class="updatingButton">Update Description</a>
-                    <a href="updateGoalPriority.html" class="updatingButton">Update Priority</a>
-                    <a href="updateGoalStatus.html" class="updatingButton">Update Status</a>
-                    <a href="deleteGoal.html" class="updatingButton">Delete Goal</a>
+            <hr class="dashed">
+            <br>
+            <br>
+    
+            <form class="card-content" id="update-goal-description-form">
+                <p class="hidden error" id="error-message"></p>
+            
+                <div class="form-field">
+                    <label for="goalId"><b>Goal ID:</b></label><br>
+                    <input type="text" required class="validated-field" id="goalId" placeholder="74zYZ" autofocus>
                 </div>
-            </div>
+            
+                <div class="form-field">
+                    <label for="description"><b>New Description:</b></label> <br>
+                    <textarea rows="5" cols="23" required class="validated-field" id="description"
+                        placeholder="I really want to just spend some money for fun."></textarea>
+                </div>
+            
+                <p>
+                    <hr style="border-top: dotted 1px;" />
+                    <br>
+            
+                </p>
+            
+                <a href="#" class="button" id="update">Update Goal</a>
+            </form>
+            <br>
+    
+        </div>
+    
+        <div class="tableCardAligned">
+            <center>
+                <h1> Viewing All Goals</h1>
+            </center>
+            <br>
+            <hr class="dashed">
+            <br>
+            <div id="allgoal-table-container"></div>
+            <p class="button-group"></p>
+    
+        </div>
+    
+    
+    </div>
 
-        <script>
-            /* When the user clicks on the button, 
-            toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
+    <script>
+        var activeDropdown = null;
+
+        function toggleDropdown(dropdownId) {
+            var dropdown = document.getElementById(dropdownId);
+
+            if (activeDropdown && activeDropdown !== dropdown) {
+                activeDropdown.classList.remove("show");
             }
 
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (e) {
-                if (!e.target.matches('.dropbtn')) {
-                    var myDropdown = document.getElementById("myDropdown");
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
+            dropdown.classList.toggle("show");
+            activeDropdown = dropdown.classList.contains("show") ? dropdown : null;
+        }
+
+        // Close the dropdowns if the user clicks outside of them
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var dropdown = dropdowns[i];
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                        activeDropdown = null;
                     }
                 }
             }
-
-
-        </script>
+        }
+    </script>
 
 </body>
 

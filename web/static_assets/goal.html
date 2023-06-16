@@ -16,15 +16,27 @@
     <div class="navbar">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
+        <a href="createGoal.html">Create Goal</a>
+        <a href="viewAllGoals.html">View All Goals</a>
         <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Menu
+            <button class="dropbtn" onclick="toggleDropdown('findDropdown')">Find Goals
                 <i class="drop"></i>
             </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a href="createGoal.html">Create Goal</a>
-                <a href="viewAllGoals.html">View All Goals</a>
-                <a href="viewGoal.html">View Goal</a>
-                <a href="updateGoal.html">Update Goal</a>
+            <div class="dropdown-content" id="findDropdown">
+                <a href="getGoalByCategory.html">By Category</a>
+                <a href="getGoalById.html">By ID</a>
+                <a href="getGoalByName.html">By Name</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('updateDropdown')">Update Goal
+                <i class="drop"></i>
+            </button>
+            <div class="dropdown-content" id="updateDropdown">
+                <a href="updateGoalAmount.html">Update Amount</a>
+                <a href="updateGoalDescription.html">Update Description</a>
+                <a href="updateGoalPriority.html">Update Priority</a>
+                <a href="updateGoalStatus.html">Update Status</a>
             </div>
         </div>
     </div>
