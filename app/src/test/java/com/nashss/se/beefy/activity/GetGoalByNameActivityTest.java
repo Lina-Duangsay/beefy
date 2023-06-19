@@ -1,69 +1,70 @@
 package com.nashss.se.beefy.activity;
 
-
-import com.nashss.se.beefy.activities.GetGoalActivity;
-import com.nashss.se.beefy.activities.requests.GetGoalRequest;
-import com.nashss.se.beefy.activities.results.GetGoalResult;
+import com.nashss.se.beefy.activities.GetGoalByNameActivity;
+import com.nashss.se.beefy.activities.requests.GetGoalByNameRequest;
+import com.nashss.se.beefy.activities.results.GetGoalByNameResult;
+import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
+import com.nashss.se.beefy.models.GoalModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
-public class GetGoalByNameActivityTest {
+class GetGoalByNameActivityTest {
 
     @Mock
     private GoalDao goalDao;
 
-    private GetGoalActivity getGoalByNameActivity;
+    private GetGoalByNameActivity getGoalByNameActivity;
 
     @BeforeEach
-    public void setUp() {
-        initMocks(this);
-        getGoalByNameActivity = new GetGoalActivity(goalDao);
+    void setUp() {
+        MockitoAnnotations.initMocks(this);
+        getGoalByNameActivity = new GetGoalByNameActivity(goalDao);
     }
 
     @Test
-    public void handleRequest_savedGoal_returnsGoalModelInResult() {
-        // GIVEN
-        String expectedUserId = "kannabear";
-        String expectedGoalName = "get new cat tree";
-        String category = "furniture";
-        String description = "i want a new, 8 foot cat tree";
-        Double amount = 200.00;
-        String priority = "HIGH";
-        String goalId = "1234";
-
-        Goal goal = new Goal();
-        goal.setUserId(expectedUserId);
-        goal.setName(expectedGoalName);
-        goal.setCategory(category);
-        goal.setDescription(description);
-        goal.setGoalAmount(amount);
-        goal.setPriority(priority);
-        goal.setGoalId(goalId);
-
-        when(goalDao.getGoal(goalId)).thenReturn(goal);
-
-        GetGoalRequest request = GetGoalRequest.builder()
-                .withGoalId(goalId)
+    void getGoalByNameActivity_goodRequest_returnsModelList() {
+        String requestedName = "Example Goal";
+        GetGoalByNameRequest request = GetGoalByNameRequest.builder()
+                .withName(requestedName)
                 .build();
 
-        // WHEN
-        GetGoalResult result = getGoalByNameActivity.handleRequest(request);
+        List<Goal> goals = new ArrayList<>();
+        goals.add(new Goal());
 
-        // THEN
-        assertEquals(expectedUserId, result.getGoalModel().getUserId());
-        assertEquals(expectedGoalName, result.getGoalModel().getName());
-        assertEquals(category, result.getGoalModel().getCategory());
-        assertEquals(description, result.getGoalModel().getDescription());
-        assertEquals(amount, result.getGoalModel().getGoalAmount());
-        assertEquals(priority, result.getGoalModel().getPriority());
-        assertEquals(goalId, result.getGoalModel().getGoalId());
+        when(goalDao.getGoalByName(requestedName)).thenReturn(goals);
 
+        GetGoalByNameResult result = getGoalByNameActivity.handleRequest(request);
+
+        verify(goalDao, times(1)).getGoalByName(requestedName);
+        List<GoalModel> expectedGoalModelList = new ModelConverter().toGoalModelList(goals);
+        assertEquals(expectedGoalModelList, result.getGoalModel());
+    }
+
+    @Test
+    void getGoalByNameActivity_badRequest_returnsEmptyModelList() {
+        String requestedName = "Non-existent Goal";
+        GetGoalByNameRequest request = GetGoalByNameRequest.builder()
+                .withName(requestedName)
+                .build();
+
+        when(goalDao.getGoalByName(requestedName)).thenReturn(new ArrayList<>());
+
+        GetGoalByNameResult result = getGoalByNameActivity.handleRequest(request);
+
+        verify(goalDao, times(1)).getGoalByName(requestedName);
+
+        assertTrue(result.getGoalModel().isEmpty());
     }
 }
+
