@@ -23,7 +23,6 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    viewGoal: path.resolve(__dirname, 'src', 'pages', 'viewGoal.js'),
     createGoal: path.resolve(__dirname, 'src', 'pages', 'createGoal.js'),
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
     viewAllGoals: path.resolve(__dirname, 'src', 'pages', 'viewAllGoals.js'),

@@ -13,7 +13,6 @@ class UpdateGoalPriority extends BindingClass {
 
         this.bindClassMethods(['mount', 'updateGoalPriority', 'update'], this);
 
-        // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.client = new BeefyClient();
         this.table = new Table(this.dataStore);
@@ -21,7 +20,7 @@ class UpdateGoalPriority extends BindingClass {
     }
 
     /**
-         * Add the table to the page and load the MusicPlaylistClient.
+         * Add the table to the page and load the BeefyClient.
          */
     mount() {
         console.log('updateGoalPriority.js mounting...');

@@ -3,6 +3,9 @@ package com.nashss.se.beefy.activities.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+/**
+ * The type Delete goal request.
+ */
 @JsonDeserialize(builder = com.nashss.se.beefy.activities.requests.DeleteGoalRequest.Builder.class)
 public class DeleteGoalRequest {
 

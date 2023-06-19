@@ -5,11 +5,12 @@ import com.nashss.se.beefy.activities.results.UpdateGoalAmountResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
-import com.nashss.se.beefy.dynamodb.models.User;
+
 import com.nashss.se.beefy.exceptions.GoalNotFoundException;
 import com.nashss.se.beefy.exceptions.InvalidAmountException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

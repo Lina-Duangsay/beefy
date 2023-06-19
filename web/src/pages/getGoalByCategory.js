@@ -9,8 +9,8 @@ class GetGoalByCategory extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'getGoalByCategory'], this);
         this.dataStore = new DataStore();
-        // this.header = new Header(this.dataStore);
         this.categoryTable = new CategoryTable();
+        this.header = new Header(this.dataStore);
         console.log("getGoalByCategory constructor");
     }
 
@@ -25,7 +25,13 @@ class GetGoalByCategory extends BindingClass {
         this.client = new BeefyClient();
     }
 
-
+    /**
+     * This function retrieves data for a specific category of goals and displays it in a table on the
+     * webpage.
+     * @param event - The event parameter is an object that represents an event that occurred in the
+     * browser, such as a button click or form submission. In this case, it is used to prevent the
+     * default behavior of a form submission, which would cause the page to reload.
+     */
     async getGoalByCategory(event) {
         event.preventDefault();
         console.log("from the getGoalByCategory method");
@@ -35,8 +41,8 @@ class GetGoalByCategory extends BindingClass {
 
         try {
             const retrievalRequest = await this.client.getGoalByCategory(requestedCategory);
-            const data = retrievalRequest; // Assign the retrieved data to the 'data' variable
-            this.categoryTable.addTableToPage(requestedCategory, data); // Pass the 'data' variable to the 'addTableToPage' method
+            const data = retrievalRequest; 
+            this.categoryTable.addTableToPage(requestedCategory, data); 
         } catch (error) {
             console.error(error);
             alert('Error retrieving item. See console for details.');

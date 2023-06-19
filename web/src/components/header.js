@@ -10,7 +10,8 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton', 
+            'createButton'
         ];
         this.bindClassMethods(methodsToBind, this);
 
@@ -50,19 +51,6 @@ export default class Header extends BindingClass {
         return siteTitle;
     }
 
-    // createUserInfoForHeader(currentUser) {
-    //     const userInfo = document.createElement('div');
-    //     userInfo.classList.add('user');
-
-    //     const childContent = currentUser
-    //         ? this.createLogoutButton(currentUser)
-    //         : this.createLoginButton();
-
-    //     userInfo.appendChild(childContent);
-
-    //     return userInfo;
-    // }
-
     createUserInfoForHeader(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user');
@@ -76,15 +64,15 @@ export default class Header extends BindingClass {
             const logoutButton = this.createLogoutButton(currentUser);
 
             userInfo.appendChild(dashboardButton);
-            userInfo.appendChild(document.createTextNode('\u00A0')); // add a space between the buttons
+            userInfo.appendChild(document.createTextNode('\u00A0')); 
             userInfo.appendChild(logoutButton);
 
             const style = window.getComputedStyle(logoutButton);
             const leftOffset = parseInt(style.getPropertyValue('left'), 10);
             const buttonWidth = parseInt(style.getPropertyValue('width'), 10);
 
-            dashboardButton.style.left = `${leftOffset - (2 * buttonWidth) - 160}px`; // adjust the left position of the Dashboard button
-            userInfo.style.width = `${leftOffset + (2 * buttonWidth) + 160}px`; // adjust the width of the userInfo container to include the gap and buttons
+            dashboardButton.style.left = `${leftOffset - (2 * buttonWidth) - 160}px`; 
+            userInfo.style.width = `${leftOffset + (2 * buttonWidth) + 160}px`;
             
         } else {
             const loginButton = this.createLoginButton();

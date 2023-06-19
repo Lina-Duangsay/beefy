@@ -26,6 +26,12 @@ class GetGoalByPriority extends BindingClass {
     }
 
 
+    /**
+     * This function retrieves a goal by priority and adds it to a table on the webpage.
+     * @param event - The event parameter is an object that represents an event that occurred in the
+     * browser, such as a button click or form submission. In this case, it is used to prevent the
+     * default behavior of a form submission, which would cause the page to reload.
+     */
     async getGoalByPriority(event) {
         event.preventDefault();
         console.log("from the getGoalByPriority method");
@@ -35,8 +41,8 @@ class GetGoalByPriority extends BindingClass {
 
         try {
             const retrievalRequest = await this.client.getGoalByPriority(requestedPriority);
-            const data = retrievalRequest; // Assign the retrieved data to the 'data' variable
-            this.priorityTable.addTableToPage(requestedPriority, data); // Pass the 'data' variable to the 'addTableToPage' method
+            const data = retrievalRequest;
+            this.priorityTable.addTableToPage(requestedPriority, data); 
         } catch (error) {
             console.error(error);
             alert('Error retrieving item. See console for details.');

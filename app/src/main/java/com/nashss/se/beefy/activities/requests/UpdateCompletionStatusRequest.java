@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = UpdateCompletionStatusRequest.Builder.class)
 public class UpdateCompletionStatusRequest {
+    
     private final String userId;
     private final String goalId;
     private final Boolean completionStatus;

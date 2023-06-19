@@ -13,7 +13,6 @@ class UpdateGoalStatus extends BindingClass {
 
         this.bindClassMethods(['mount', 'updateGoalStatus', 'update'], this);
 
-        // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.client = new BeefyClient();
         this.completionTable = new CompletionTable(this.dataStore);
@@ -21,7 +20,7 @@ class UpdateGoalStatus extends BindingClass {
     }
 
     /**
-         * Add the table to the page and load the MusicPlaylistClient.
+         * Add the table to the page and load the BeefyClient.
          */
     mount() {
         console.log('updateGoalStatus.js mounting...');
@@ -48,7 +47,7 @@ class UpdateGoalStatus extends BindingClass {
         updateButton.innerText = 'Loading...';
 
         const goalId = document.getElementById('goalId').value;
-        const completionStatus = document.getElementById('completionStatus').value; // Updated variable name
+        const completionStatus = document.getElementById('completionStatus').value;
 
         const goal = await this.client.updateGoalStatus(goalId, completionStatus, (error) => {
             updateButton.innerText = origButtonText;
@@ -71,7 +70,7 @@ class UpdateGoalStatus extends BindingClass {
         const completionStatus = form.elements["completionStatus"].value;
 
         try {
-            const updateRequest = await this.client.updateGoalStatus(goalId, completionStatus); // Updated parameter name
+            const updateRequest = await this.client.updateGoalStatus(goalId, completionStatus);
             alert('Goal updated successfully! Congrats on meeting your goal!');
             window.location.reload();
         } catch (error) {

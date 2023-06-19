@@ -9,6 +9,7 @@ import com.nashss.se.beefy.exceptions.GoalNotFoundException;
 import com.nashss.se.beefy.exceptions.InvalidDescriptionException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,6 +23,12 @@ public class UpdateGoalDescriptionActivity {
     private final GoalDao goalDao;
     private final MetricsPublisher metricsPublisher;
 
+    /**
+     * Instantiates a new Update goal description activity.
+     *
+     * @param goalDao          the goal dao
+     * @param metricsPublisher the metrics publisher
+     */
     @Inject
     public UpdateGoalDescriptionActivity(GoalDao goalDao, MetricsPublisher metricsPublisher) {
         this.goalDao = goalDao;

@@ -7,6 +7,7 @@ import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.models.GoalModel;
 import com.nashss.se.beefy.utility.ServiceUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,9 +42,9 @@ public class CreateGoalActivity {
      * If the provided goal name or user ID has invalid characters, throws an
      * InvalidAttributeValueException
      *
-     * @param createGoalRequest request object containing the oal name and user ID
+     * @param request request object containing the oal name and user ID
      *                              associated with it
-     * @return createGoalResult result object containing the API defined {@link com.nashss.se.beefy.models.GoalModel}
+     * @return CreateGoalResult result object containing the API defined @CreateGoalResult
      */
     public CreateGoalResult handleRequest(final CreateGoalRequest request) {
         log.info("Received CreateGoalRequest {}", request);

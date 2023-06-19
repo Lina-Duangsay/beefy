@@ -2,8 +2,8 @@ package com.nashss.se.beefy.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.beefy.activities.requests.DeleteGoalRequest;
 
+import com.nashss.se.beefy.activities.requests.DeleteGoalRequest;
 import com.nashss.se.beefy.activities.results.DeleteGoalResult;
 
 public class DeleteGoalLambda extends LambdaActivityRunner<DeleteGoalRequest, DeleteGoalResult>

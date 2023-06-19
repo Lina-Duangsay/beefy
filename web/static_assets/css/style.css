@@ -366,6 +366,9 @@ span {
 
 .cardington {
     width: flex;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
@@ -375,6 +378,15 @@ span {
 .card {
     height: 443px;
     width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cardViews {
+    height: flex;
+    width: flex;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;

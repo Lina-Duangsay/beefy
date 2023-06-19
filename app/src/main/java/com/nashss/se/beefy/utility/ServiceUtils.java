@@ -10,11 +10,6 @@ public final class ServiceUtils {
     private ServiceUtils() {
     }
 
-// will this create a new user id for each user? we will see.
-    public static String generateUserId() {
-        return RandomStringUtils.randomAlphanumeric(5);
-    }
-
     public static String generateGoalId() {
         return RandomStringUtils.randomAlphanumeric(5);
     }

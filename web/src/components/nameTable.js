@@ -13,7 +13,7 @@ export default class NameTable extends BindingClass {
 
         const table = this.buildTable(data, requestedName);
         const container = document.getElementById('name-table-container');
-        table.classList.add('table-container'); // Add a class to style the table
+        table.classList.add('table-container'); 
         container.appendChild(table);
     }
 
@@ -26,7 +26,6 @@ export default class NameTable extends BindingClass {
         const table = document.createElement('table');
         table.classList.add('table-container');
 
-        // Create the table header row
         const headerRow = table.insertRow();
         const headers = ['Goal Id', 'Name', 'Category', 'Amount', 'Description', 'Priority', 'Status'];
         headers.forEach((header) => {
@@ -35,7 +34,7 @@ export default class NameTable extends BindingClass {
             headerRow.appendChild(th);
         });
 
-        // Create the order table body rows and only show unprocessed requests
+
         data
             .filter((item) => item.name === requestedName)
             .forEach((item) => {

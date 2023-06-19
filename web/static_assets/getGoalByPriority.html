@@ -14,42 +14,43 @@
 
     <header class="header" id="header"></header>
 
-    <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="createGoal.html">Create Goal</a>
-        <a href="viewAllGoals.html">View All Goals</a>
-        <div class="dropdown">
-            <button class="dropbtn" onclick="toggleDropdown('findDropdown')">Find Goals
-                <i class="drop"></i>
-            </button>
-            <div class="dropdown-content" id="findDropdown">
-                <a href="getGoalByCategory.html">By Category</a>
-                <a href="getGoalById.html">By ID</a>
-                <a href="getGoalByName.html">By Name</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn" onclick="toggleDropdown('updateDropdown')">Update Goal
-                <i class="drop"></i>
-            </button>
-            <div class="dropdown-content" id="updateDropdown">
-                <a href="updateGoalAmount.html">Update Amount</a>
-                <a href="updateGoalDescription.html">Update Description</a>
-                <a href="updateGoalPriority.html">Update Priority</a>
-                <a href="updateGoalStatus.html">Update Status</a>
-            </div>
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="createGoal.html">Create Goal</a>
+    <a href="viewAllGoals.html">View All Goals</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('findDropdown')">Find Goals
+            <i class="drop"></i>
+        </button>
+        <div class="dropdown-content" id="findDropdown">
+            <a href="getGoalByCategory.html">By Category</a>
+            <a href="getGoalById.html">By ID</a>
+            <a href="getGoalByName.html">By Name</a>
         </div>
     </div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('updateDropdown')">Update Goal
+            <i class="drop"></i>
+        </button>
+        <div class="dropdown-content" id="updateDropdown">
+            <a href="updateGoalAmount.html">Update Amount</a>
+            <a href="updateGoalDescription.html">Update Description</a>
+            <a href="updateGoalPriority.html">Update Priority</a>
+            <a href="updateGoalStatus.html">Update Status</a>
+        </div>
+    </div>
+</div>
 
     <div class="viewingGoal">
         <br>
         <br>
 
         <div id="priority-table-container"></div>
+<br>
 
         <div class="creation" id="creation">
-            <div class="card">
+            <div class="cardViews">
                 <h1 style="color:#99b2dd">View Goal By Priority:</h1>
                 <br>
                 <hr class="dashed">

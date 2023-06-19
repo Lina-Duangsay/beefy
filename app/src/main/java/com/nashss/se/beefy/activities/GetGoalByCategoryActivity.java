@@ -1,18 +1,19 @@
 package com.nashss.se.beefy.activities;
 
 import com.nashss.se.beefy.activities.requests.GetGoalByCategoryRequest;
-import com.nashss.se.beefy.activities.requests.GetGoalRequest;
 import com.nashss.se.beefy.activities.results.GetGoalByCategoryResult;
-import com.nashss.se.beefy.activities.results.GetGoalResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.models.GoalModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.List;
+
+import javax.inject.Inject;
+
 
 /**
  * Implementation of the GetGoalByCategoryActivity for the Beef's GetGoalByCategoryActivity API.
