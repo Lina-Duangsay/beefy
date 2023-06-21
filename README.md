@@ -70,4 +70,8 @@ Each request is authenticated, users must sign in to access information.
 - I would like each goal to appear on its own card, similar to how Pinterest displays its data (a grid-format, with each entry on its own)
 - I would like to have the user dashboard display the user's information (username, number of goals, amount needed to save, goals completed, etc)
 - I would like to implement a feature that allows the user to make comments to each goal, a way to indicate how much money you've saved towards it,
+<<<<<<< HEAD
   and a progress bar that updates as you go. 
+=======
+  and a progress bar that updates as you go. 
+>>>>>>> f0f6dd115e7e5bac8603127964a9cef901f22c1c
