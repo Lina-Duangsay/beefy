@@ -6,6 +6,7 @@ import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
 import com.nashss.se.beefy.dynamodb.models.Goal;
 import com.nashss.se.beefy.models.GoalModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -61,10 +61,10 @@ public class GoalModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GoalModel goalModel = (GoalModel) o;
-        return Objects.equals(userId, goalModel.userId) && Objects.equals(name, goalModel.name)
-                && Objects.equals(category, goalModel.category) && Objects.equals(description, goalModel.description)
-                && Objects.equals(goalAmount, goalModel.goalAmount) && Objects.equals(priority, goalModel.priority)
-                && Objects.equals(goalId, goalModel.goalId) && Objects.equals(completionStatus, goalModel.completionStatus);
+        return Objects.equals(userId, goalModel.userId) && Objects.equals(name, goalModel.name) &&
+                Objects.equals(category, goalModel.category) && Objects.equals(description, goalModel.description) &&
+                Objects.equals(goalAmount, goalModel.goalAmount) && Objects.equals(priority, goalModel.priority) &&
+                Objects.equals(goalId, goalModel.goalId) && Objects.equals(completionStatus, goalModel.completionStatus);
     }
 
     @Override

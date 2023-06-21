@@ -13,7 +13,6 @@ class UpdateGoalAmount extends BindingClass {
 
         this.bindClassMethods(['mount', 'updateGoalAmount', 'update'], this);
 
-        // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.client = new BeefyClient();
         this.table = new Table(this.dataStore);
@@ -21,7 +20,7 @@ class UpdateGoalAmount extends BindingClass {
     }
 
     /**
-         * Add the table to the page and load the MusicPlaylistClient.
+         * Add the table to the page and load the BeefyServiceClient.
          */
     mount() {
         console.log('UpdateGoalAmount.js mounting...');
@@ -60,7 +59,7 @@ class UpdateGoalAmount extends BindingClass {
 
 
     /**
-         * Method to run when the update button is pressed. Call the BeefyServiceCleint to update the inventory.
+         * Method to run when the update button is pressed. Call the BeefyClient to update the inventory.
          */
     async updateGoalAmount(event) {
         event.preventDefault();

@@ -20,8 +20,6 @@ class GetGoalByName extends BindingClass {
         if (form) {
             form.addEventListener('submit', this.getGoalByName.bind(this));
         }
-
-        // this.header.addHeaderToPage();
         this.client = new BeefyClient();
     }
 
@@ -35,14 +33,13 @@ class GetGoalByName extends BindingClass {
 
         try {
             const retrievalRequest = await this.client.getGoalByName(requestedName);
-            const data = retrievalRequest; // Assign the retrieved data to the 'data' variable
-            this.nameTable.addTableToPage(requestedName, data); // Pass the 'data' variable to the 'addTableToPage' method
+            const data = retrievalRequest; 
+            this.nameTable.addTableToPage(requestedName, data);
         } catch (error) {
             console.error(error);
             alert('Error retrieving item. See console for details.');
         }
     }
-
 
 }
 

@@ -13,7 +13,7 @@ export default class IdTable extends BindingClass {
 
         const table = this.buildTable(data, requestedGoalId);
         const container = document.getElementById('goalId-table-container');
-        table.classList.add('table-container'); // Add a class to style the table
+        table.classList.add('table-container'); 
         container.appendChild(table);
     }
 
@@ -32,7 +32,6 @@ export default class IdTable extends BindingClass {
         const table = document.createElement('table');
         table.classList.add('table-container');
 
-        // Create the table header row
         const headerRow = table.insertRow();
         const headers = ['Goal Id', 'Name', 'Category', 'Amount', 'Description', 'Priority', 'Status'];
         headers.forEach((header) => {
@@ -42,7 +41,6 @@ export default class IdTable extends BindingClass {
         });
 
         if (isArray) {
-            // Create table rows for each goal object in the array
             data.forEach((goal) => {
                 const row = table.insertRow();
                 row.classList.add('goal-row');
@@ -57,12 +55,12 @@ export default class IdTable extends BindingClass {
                 ];
                 cells.forEach((cell) => {
                     const td = document.createElement('td');
-                    td.innerText = cell !== undefined ? cell.toString() : ''; // Convert undefined to empty string
+                    td.innerText = cell !== undefined ? cell.toString() : ''; 
                     row.appendChild(td);
                 });
             });
         } else {
-            // Create a single table row for the goal object
+
             const row = table.insertRow();
             row.classList.add('goal-row');
             const cells = [
@@ -76,7 +74,7 @@ export default class IdTable extends BindingClass {
             ];
             cells.forEach((cell) => {
                 const td = document.createElement('td');
-                td.innerText = cell !== undefined ? cell.toString() : ''; // Convert undefined to empty string
+                td.innerText = cell !== undefined ? cell.toString() : ''; 
                 row.appendChild(td);
             });
         }

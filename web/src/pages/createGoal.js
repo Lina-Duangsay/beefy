@@ -57,7 +57,6 @@ class CreateGoal extends BindingClass {
         }
     }
 
-
 }
 
 /**

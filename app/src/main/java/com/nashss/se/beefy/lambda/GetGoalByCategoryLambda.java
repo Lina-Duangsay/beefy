@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.nashss.se.beefy.activities.requests.GetGoalByCategoryRequest;
 import com.nashss.se.beefy.activities.results.GetGoalByCategoryResult;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

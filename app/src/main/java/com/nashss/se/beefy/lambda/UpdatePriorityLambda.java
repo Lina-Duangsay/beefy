@@ -20,9 +20,8 @@ public class UpdatePriorityLambda extends LambdaActivityRunner<UpdatePriorityReq
                                     .withGoalId(unauthenticatedRequest.getGoalId())
                                     .withUserId(claims.get("email"))
                                     .build());
-                },
-                (request, serviceComponent) ->
-                        serviceComponent.provideUpdatePriorityActivity().handleRequest(request)
+                    },
+                (request, serviceComponent) -> serviceComponent.provideUpdatePriorityActivity().handleRequest(request)
         );
     }
 }

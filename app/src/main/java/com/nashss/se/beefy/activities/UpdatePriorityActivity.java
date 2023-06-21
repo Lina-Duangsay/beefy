@@ -1,8 +1,7 @@
 package com.nashss.se.beefy.activities;
 
-import com.nashss.se.beefy.activities.requests.UpdateGoalDescriptionRequest;
 import com.nashss.se.beefy.activities.requests.UpdatePriorityRequest;
-import com.nashss.se.beefy.activities.results.UpdateGoalDescriptionResult;
+
 import com.nashss.se.beefy.activities.results.UpdatePriorityResult;
 import com.nashss.se.beefy.converter.ModelConverter;
 import com.nashss.se.beefy.dynamodb.GoalDao;
@@ -11,6 +10,7 @@ import com.nashss.se.beefy.exceptions.GoalNotFoundException;
 import com.nashss.se.beefy.exceptions.InvalidDescriptionException;
 import com.nashss.se.beefy.exceptions.UserNotFoundException;
 import com.nashss.se.beefy.metrics.MetricsPublisher;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,6 +24,12 @@ public class UpdatePriorityActivity {
     private final GoalDao goalDao;
     private final MetricsPublisher metricsPublisher;
 
+    /**
+     * Instantiates a new Update priority activity.
+     *
+     * @param goalDao          the goal dao
+     * @param metricsPublisher the metrics publisher
+     */
     @Inject
     public UpdatePriorityActivity(GoalDao goalDao, MetricsPublisher metricsPublisher) {
         this.goalDao = goalDao;
@@ -60,5 +66,6 @@ public class UpdatePriorityActivity {
                 .withGoalModel(new ModelConverter().toGoalModel(savedGoal))
                 .build();
     }
+
 
 }

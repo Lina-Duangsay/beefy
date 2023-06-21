@@ -42,7 +42,6 @@ class SearchPlaylists extends BindingClass {
      * Add the header to the page and load the MusicPlaylistClient.
      */
     mount() {
-        // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         this.header.addHeaderToPage();
 
         this.client = new BeefyClient();

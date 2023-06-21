@@ -9,7 +9,7 @@ class GetGoalById extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'getGoalById'], this);
         this.dataStore = new DataStore();
-        // this.header = new Header(this.dataStore);
+        this.header = new Header(this.dataStore);
         this.idTable = new IdTable();
         console.log("GetGoalById constructor");
     }
@@ -20,8 +20,6 @@ class GetGoalById extends BindingClass {
         if (form) {
             form.addEventListener('submit', this.getGoalById.bind(this));
         }
-
-        this.header.addHeaderToPage();
         this.client = new BeefyClient();
     }
 
@@ -35,14 +33,12 @@ class GetGoalById extends BindingClass {
 
         try {
             const retrievalRequest = await this.client.getGoalById(requestedGoalId);
-            this.idTable.addTableToPage(requestedGoalId, retrievalRequest); // Pass the 'retrievalRequest' object directly
+            this.idTable.addTableToPage(requestedGoalId, retrievalRequest);
         } catch (error) {
             console.error(error);
             alert('Error retrieving item. See console for details.');
         }
     }
-
-
 
 }
 

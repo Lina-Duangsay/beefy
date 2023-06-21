@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(builder = GetGoalRequest.Builder.class)
 public class GetGoalRequest {
+    
     private final String goalId;
 
     public GetGoalRequest(String goalId) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = UpdateGoalAmountRequest.Builder.class)
 public class UpdateGoalAmountRequest {
+    
     private final String userId;
     private final String goalId;
     private final Double amount;

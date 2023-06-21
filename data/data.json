@@ -1,0 +1,144 @@
+{
+    "goals": [
+        {
+            "PutRequest": {
+                "goalId": {
+                    "S": "HTgf3"
+                },
+                "category": {
+                    "S": "Technology"
+                },
+                "completionStatus": {
+                    "N": "0"
+                },
+                "description": {
+                    "S": "I want an iPad with a paperlike screen protector, an Apple pencil, and a case. I WANT IT NOW."
+                },
+                "goalAmount": {
+                    "N": "2000"
+                },
+                "goalName": {
+                    "S": "iPad Pro 12.1\""
+                },
+                "priority": {
+                    "S": "HIGH"
+                },
+                "userId": {
+                    "S": "linaduangsay@gmail.com"
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "goalId": {
+                    "S": "12v76"
+                },
+                "category": {
+                    "S": "Cats"
+                },
+                "completionStatus": {
+                    "N": "0"
+                },
+                "description": {
+                    "S": "My babies need a new cat tree."
+                },
+                "goalAmount": {
+                    "N": "300"
+                },
+                "goalName": {
+                    "S": "Cat Tree"
+                },
+                "priority": {
+                    "S": "NORMAL"
+                },
+                "userId": {
+                    "S": "linaduangsay@gmail.com"
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "goalId": {
+                    "S": "4326y"
+                },
+                "category": {
+                    "S": "Technology"
+                },
+                "completionStatus": {
+                    "N": "0"
+                },
+                "description": {
+                    "S": "I want a ring version of the Apple Watch."
+                },
+                "goalAmount": {
+                    "N": "350"
+                },
+                "goalName": {
+                    "S": "Oura Ring"
+                },
+                "priority": {
+                    "S": "NORMAL"
+                },
+                "userId": {
+                    "S": "linaduangsay@gmail.com"
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "goalId": {
+                    "S": "23yt7"
+                },
+                "category": {
+                    "S": "Shopping"
+                },
+                "completionStatus": {
+                    "N": "0"
+                },
+                "description": {
+                    "S": "My shopping addiction can't be quelled."
+                },
+                "goalAmount": {
+                    "N": "700"
+                },
+                "goalName": {
+                    "S": "Shopping Addiction"
+                },
+                "priority": {
+                    "S": "HIGH"
+                },
+                "userId": {
+                    "S": "shiryphone@gmail.com"
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "goalId": {
+                    "S": "880B0"
+                },
+                "category": {
+                    "S": "Shopping"
+                },
+                "completionStatus": {
+                    "N": "0"
+                },
+                "description": {
+                    "S": "I just really want to go shopping."
+                },
+                "goalAmount": {
+                    "N": "700"
+                },
+                "goalName": {
+                    "S": "Shopping .. Not Addiction"
+                },
+                "priority": {
+                    "S": "HIGH"
+                },
+                "userId": {
+                    "S": "shiryphone@gmail.com"
+                }
+            }
+        }
+    ]
+}
