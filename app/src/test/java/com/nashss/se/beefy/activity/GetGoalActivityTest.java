@@ -24,7 +24,6 @@ class GetGoalActivityTest {
 
     @Test
     void handleRequest_validRequest_returnsGoal() {
-        // GIVEN
         String goalId = "1689";
         GetGoalRequest request = GetGoalRequest.builder()
                 .withGoalId(goalId)
@@ -39,10 +38,8 @@ class GetGoalActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(goal);
 
-        // WHEN
         GetGoalResult result = getGoalActivity.handleRequest(request);
 
-        // THEN
         assertNotNull(result);
         assertEquals(expectedGoalModel, result.getGoalModel());
         verify(goalDao, times(1)).getGoal(goalId);

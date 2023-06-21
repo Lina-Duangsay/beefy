@@ -30,6 +30,12 @@ public class ModelConverter {
                 .build();
     }
 
+    /**
+     * To goal model list list.
+     *
+     * @param goalList the goal list
+     * @return the list
+     */
     public List<GoalModel> toGoalModelList(List<Goal> goalList) {
         List<GoalModel> goalModels = new ArrayList<>();
         for (Goal goals : goalList) {

@@ -35,7 +35,6 @@ public class UpdateGoalAmountActivityTest {
 
     @Test
     public void handleRequest_validRequest_updatesGoalAmount() {
-        // GIVEN
         String goalId = "1589";
         String userId = "selene";
         double currentAmount = 200.00;
@@ -55,10 +54,8 @@ public class UpdateGoalAmountActivityTest {
         when(goalDao.getGoal(goalId)).thenReturn(initialGoal);
         when(goalDao.saveGoal(initialGoal)).thenReturn(initialGoal);
 
-        // WHEN
         UpdateGoalAmountResult result = updateGoalAmountActivity.handleRequest(request);
 
-        // THEN
         assertEquals(goalId, result.getModel().getGoalId());
         assertEquals(userId, result.getModel().getUserId());
         assertEquals(newAmount, result.getModel().getGoalAmount());
@@ -67,7 +64,6 @@ public class UpdateGoalAmountActivityTest {
 
     @Test
     public void handleRequest_invalidAmount_throwsInvalidAmountException() {
-    // GIVEN
         String goalId = "1589";
         String userId = "selene";
         double amount = -1.0;
@@ -85,7 +81,6 @@ public class UpdateGoalAmountActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(newGoal);
 
-        // WHEN + THEN
         try {
             updateGoalAmountActivity.handleRequest(request);
             fail("Expected InvalidAmountException to be thrown");

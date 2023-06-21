@@ -29,7 +29,6 @@ public class CreateGoalActivityTest {
 
     @Test
     public void handleRequest_createsAndSavesGoal() {
-        // GIVEN
         String goalName = "lululemon bbl jacket";
         String userID = "gymlover80";
         String category = "gym";
@@ -46,10 +45,8 @@ public class CreateGoalActivityTest {
                 .withUserId(userID)
                 .build();
 
-        // WHEN
         CreateGoalResult result = createGoalActivity.handleRequest(request);
 
-        // THEN
         verify(goalDao).saveGoal(any(Goal.class));
 
         assertNotNull(result.getGoalModel().getGoalId());

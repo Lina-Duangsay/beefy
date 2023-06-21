@@ -40,7 +40,6 @@ public class UpdateGoalDescriptionActivityTest {
 
     @Test
     public void handleRequest_validRequest_updatesDescription() {
-        // GIVEN
         String goalId = "1689";
         String userId = "selene";
         String oldDescription = "need to fuel my obsession for V";
@@ -60,10 +59,8 @@ public class UpdateGoalDescriptionActivityTest {
         when(goalDao.getGoal(goalId)).thenReturn(initialGoal);
         when(goalDao.saveGoal(initialGoal)).thenReturn(initialGoal);
 
-        // WHEN
         UpdateGoalDescriptionResult result = updateGoalDescriptionActivity.handleRequest(request);
 
-        // THEN
         assertEquals(goalId, result.getModel().getGoalId());
         assertEquals(userId, result.getModel().getUserId());
         assertEquals(newDescription, result.getModel().getDescription());
@@ -71,7 +68,6 @@ public class UpdateGoalDescriptionActivityTest {
 
     @Test
     public void handleRequest_nullDescriptionProvided_throwsInvalidDescriptionException() {
-        // GIVEN
         String goalId = "1589";
         String userId = "selene";
         String badDescription = null;
@@ -89,7 +85,6 @@ public class UpdateGoalDescriptionActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(newGoal);
 
-        // WHEN + THEN
         try {
             updateGoalDescriptionActivity.handleRequest(request);
             fail("Expected InvalidDescriptionException to be thrown");

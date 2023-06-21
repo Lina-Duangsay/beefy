@@ -28,7 +28,6 @@ class UpdateCompletionStatusActivityTest {
 
     @Test
     void handleRequest_validRequest_updatesCompletionStatus() {
-        // GIVEN
         String goalId = "1689";
         String userId = "selene";
         boolean completionStatus = true;
@@ -52,10 +51,8 @@ class UpdateCompletionStatusActivityTest {
         when(goalDao.getGoal(goalId)).thenReturn(initialGoal);
         when(goalDao.saveGoal(updatedGoal)).thenReturn(updatedGoal);
 
-        // WHEN
         UpdateCompletionStatusResult result = updateCompletionStatusActivity.handleRequest(request);
 
-        // THEN
         assertNotNull(result);
         assertEquals(goalId, result.getModel().getGoalId());
         assertEquals(userId, result.getModel().getUserId());
@@ -66,7 +63,6 @@ class UpdateCompletionStatusActivityTest {
 
     @Test
     void handleRequest_goalNotFound_throwsGoalNotFoundException() {
-        // GIVEN
         String goalId = "1689";
         String userId = "selene";
         boolean completionStatus = true;
@@ -79,17 +75,14 @@ class UpdateCompletionStatusActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(null);
 
-        // WHEN
         assertThrows(GoalNotFoundException.class, () -> updateCompletionStatusActivity.handleRequest(request));
 
-        // THEN
         verify(goalDao, times(1)).getGoal(goalId);
         verify(goalDao, never()).saveGoal(any());
     }
 
     @Test
     void handleRequest_incorrectGoalId_throwsGoalNotFoundException() {
-        // GIVEN
         String goalId = "1689";
         String userId = "selene";
         boolean completionStatus = true;
@@ -107,17 +100,14 @@ class UpdateCompletionStatusActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(goal);
 
-        // WHEN
         assertThrows(GoalNotFoundException.class, () -> updateCompletionStatusActivity.handleRequest(request));
 
-        // THEN
         verify(goalDao, times(1)).getGoal(goalId);
         verify(goalDao, never()).saveGoal(any());
     }
 
     @Test
     void handleRequest_incorrectUserId_throwsUserNotFoundException() {
-        // GIVEN
         String goalId = "1689";
         String userId = "selene";
         boolean completionStatus = true;
@@ -135,10 +125,8 @@ class UpdateCompletionStatusActivityTest {
 
         when(goalDao.getGoal(goalId)).thenReturn(goal);
 
-        // WHEN
         assertThrows(UserNotFoundException.class, () -> updateCompletionStatusActivity.handleRequest(request));
 
-        // THEN
         verify(goalDao, times(1)).getGoal(goalId);
         verify(goalDao, never()).saveGoal(any());
     }
