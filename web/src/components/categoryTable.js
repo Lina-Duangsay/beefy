@@ -11,11 +11,17 @@ export default class CategoryTable extends BindingClass {
     addTableToPage(requestedCategory, data) {
         console.log('CategoryTable.js building...');
 
-        const table = this.buildTable(data, requestedCategory);
         const container = document.getElementById('category-table-container');
-        table.classList.add('table-container'); 
+        if (!container) {
+            console.error('Error: category-table-container element not found.');
+            return;
+        }
+
+        const table = this.buildTable(data, requestedCategory);
+        table.classList.add('table-container');
         container.appendChild(table);
     }
+
 
     buildTable(data, requestedCategory) {
         if (!Array.isArray(data)) {

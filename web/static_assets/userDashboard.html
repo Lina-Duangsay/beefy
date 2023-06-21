@@ -48,21 +48,19 @@
 
 <br>
 
-
-        <center>
-            <table border="1">
-                <tr>
-        
-                    <td><img src="nasty_beep.jpg" width="500" height="300" /></td>
-        
-                    <td><img src="ugly_bear.jpg" width="500" height="300" />
-        
-                    </td>
-                </tr>
-            </table>
-        </center>
-    </center>
-
+    <div class="slider">
+        <span id="slide-1"></span>
+        <span id="slide-2"></span>
+        <div class="image-container">
+            <img src="nasty_beep.jpg" class="slide"
+                width="500" height="300" />
+            <img src="ugly_bear.jpg" class="slide"
+                width="500" height="300" />
+        </div>
+        <div class="buttons">
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+        </div>
 
     <script>
         var activeDropdown = null;
