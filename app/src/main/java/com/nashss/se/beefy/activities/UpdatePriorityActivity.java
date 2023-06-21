@@ -55,10 +55,6 @@ public class UpdatePriorityActivity {
             throw new UserNotFoundException("Your user info was not found!");
         }
 
-        if (goal.getPriority() == null) {
-            throw new InvalidDescriptionException("You cannot update the priority to be null!");
-        }
-
         goal.setPriority(request.getPriority());
         Goal savedGoal = goalDao.saveGoal(goal);
 
