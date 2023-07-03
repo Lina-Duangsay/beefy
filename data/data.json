@@ -2,7 +2,7 @@
     "goals": [
         {
             "PutRequest": {
-                "goalId": {
+               "Item": { "goalId": {
                     "S": "HTgf3"
                 },
                 "category": {
@@ -27,9 +27,11 @@
                     "S": "linaduangsay@gmail.com"
                 }
             }
-        },
+        }
+    },
         {
             "PutRequest": {
+            "Item": {
                 "goalId": {
                     "S": "12v76"
                 },
@@ -55,9 +57,11 @@
                     "S": "linaduangsay@gmail.com"
                 }
             }
-        },
-        {
-            "PutRequest": {
+        }
+    },
+    {
+        "PutRequest": {
+            "Item": {
                 "goalId": {
                     "S": "4326y"
                 },
@@ -83,9 +87,11 @@
                     "S": "linaduangsay@gmail.com"
                 }
             }
-        },
-        {
-            "PutRequest": {
+        }
+    },
+    {
+        "PutRequest": {
+            "Item": {
                 "goalId": {
                     "S": "23yt7"
                 },
@@ -111,9 +117,11 @@
                     "S": "shiryphone@gmail.com"
                 }
             }
-        },
-        {
-            "PutRequest": {
+        }
+    },
+    {
+        "PutRequest": {
+            "Item": {
                 "goalId": {
                     "S": "880B0"
                 },
@@ -140,5 +148,6 @@
                 }
             }
         }
+    }
     ]
 }

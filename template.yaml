@@ -206,7 +206,11 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/goals"
+                Resource: 
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/goals"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/goals/index/GoalsByCategoryIndex"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/goals/index/GoalsByNameIndex"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/goals/index/AllGoalsUserIdIndex"
 
         - PolicyName: 'AccessUsersTable'
           PolicyDocument:
@@ -215,6 +219,8 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/users"
+                
+          
 
   #-----------------------------------------------------
   # Lambda Functions Configuration

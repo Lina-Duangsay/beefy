@@ -4,13 +4,14 @@ import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
+
 class GetGoalByCategory extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['mount', 'getGoalByCategory'], this);
         this.dataStore = new DataStore();
         this.categoryTable = new CategoryTable();
-        this.header = new Header(this.dataStore);
+        this.header = new Header(); // Modify this line
         console.log("getGoalByCategory constructor");
     }
 
@@ -21,7 +22,7 @@ class GetGoalByCategory extends BindingClass {
             form.addEventListener('submit', this.getGoalByCategory.bind(this));
         }
 
-        this.header.addHeaderToPage();
+        this.header.addHeaderToPage(); // Add this line
         this.client = new BeefyClient();
     }
 
